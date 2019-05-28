@@ -2,7 +2,8 @@ body {
   color: #d79921;
   background-color: #282828;
   font-size: 16px;
-  text-align: center;
+  max-width: 800px;
+  margin: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -11,6 +12,8 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 1.6em;
+  text-align: left;
+  margin-bottom: 5px;
 }
 
 h2 {
@@ -19,4 +22,33 @@ h2 {
 
 p {
 	background-color: #3c3836;    /* Light gray */
+	margin-top: 5px;
+}
+
+a:link {
+	text-decoration: none;
+	color: #d79921;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #d79921;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #d79921;
+}
+
+a:active {
+	text-decoration: none;
+	color: #d79921;
+}
+
+.alignleft {
+	float: left;
+}
+
+.alignright {
+	float: right;
 }
