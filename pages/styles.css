@@ -6,6 +6,18 @@ body {
   margin: auto;
 }
 
+.nav-container {
+	display: inline-flex;
+	flex-direction: row;
+}
+
+.item {
+	width: 50px;
+	margin: 5px;
+	border: 3px solid #d79921;
+	background-color: #dfdfdf;
+}
+
 .flexbox-container {
 	display: flex;
 	justify-content: center;
