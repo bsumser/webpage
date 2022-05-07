@@ -35,7 +35,7 @@ body {
 }
 
 .flexbox-item h1 {
-  	font-family: "Helvetica", "Arial", sans-serif;
+	font-family: "Source Sans Pro", sans-serif;
 	min-height: 100px;
 	flex: 100%;
 }
