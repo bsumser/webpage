@@ -27,6 +27,8 @@ a:active {
   	color: #fbf1c7;
 }
 
+
+<!--THIS PART SHOULD BE RIGHT ALIGNED-->
 .nav-container {
 	display: inline-flex;
 	flex-direction: row;
