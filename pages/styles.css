@@ -1,62 +1,22 @@
-body {
-  color: #d79921;
-  background-color: #282828;
-  font-size: 16px;
-  max-width: 800px;
-  margin: auto;
+.flexbox-container {
+	display: flex;
 }
 
-div {
-	max-width: 400px;
+.flexbox-item {
+	width: 200px;
+	margin: 10px;
+	border: 3px solid #333;
+	background-color: #dfdfdf;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Helvetica", "Arial", sans-serif;
+.flexbox-item-1 {
+	min-height: 100px;
 }
 
-h1 {
-  font-size: 1.6em;
-  text-align: middle;
-  margin-bottom: 5px;
+.flexbox-item-2 {
+	min-height: 200px;
 }
 
-h2 {
-  font-size: 1.4em;
-}
-
-p {
-	background-color: #3c3836;    /* Light gray */
-	margin-top: 5px;
-}
-
-a:link {
-	text-decoration: none;
-	color: #d79921;
-}
-
-a:visited {
-	text-decoration: none;
-	color: #d79921;
-}
-
-a:hover {
-	text-decoration: none;
-	color: #d79921;
-}
-
-a:active {
-	text-decoration: none;
-	color: #d79921;
-}
-
-.alignleft {
-	float: left;
-}
-
-.alignright {
-	float: right;
-}
-
-.box {
-    display: flex;
+.flexbox-item-3 {
+	min-height: 300px;
 }
