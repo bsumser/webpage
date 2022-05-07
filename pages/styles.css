@@ -56,3 +56,7 @@ a:active {
 .alignright {
 	float: right;
 }
+
+.box {
+    display: flex;
+}
