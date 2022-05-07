@@ -6,6 +6,27 @@ body {
   margin: auto;
 }
 
+a:link {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+  	color: #fbf1c7;
+}
+
+a:visited {
+	text-decoration: none;
+  	color: #fbf1c7;
+}
+
+a:hover {
+	text-decoration: none;
+  	color: #fbf1c7;
+}
+
+a:active {
+	text-decoration: none;
+  	color: #fbf1c7;
+}
+
 .nav-container {
 	display: inline-flex;
 	flex-direction: row;
