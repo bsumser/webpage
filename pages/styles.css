@@ -32,7 +32,6 @@ a:active {
 .nav-container {
 	display: inline-flex;
 	flex-direction: row;
-	justify-content: flex-end;
 	justify-content: right;
 	flex: 100%;
 }
