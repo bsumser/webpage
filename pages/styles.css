@@ -39,38 +39,3 @@ a:active {
 	height: 50px;
 	background-color: #3c3836;    /* Light gray */
 }
-
-.flexbox-container {
-	display: flex;
-	justify-content: center;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
-
-.flexbox-item {
-	width: 200px;
-	margin: 10px;
-	border: 3px solid #d79921;
-	background-color: #dfdfdf;
-}
-
-.flexbox-item h1 {
-	font-family: "Source Sans Pro", sans-serif;
-	min-height: 100px;
-	flex: 100%;
-}
-
-.flexbox-item-1 {
-	min-height: 100px;
-	flex: 50%;
-}
-
-.flexbox-item-2 {
-	min-height: 200px;
-	flex: 50%
-}
-
-.flexbox-item-3 {
-	min-height: 300px;
-	flex: 50%
-}
