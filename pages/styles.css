@@ -27,11 +27,11 @@ a:active {
   	color: #fbf1c7;
 }
 
-
 <!--THIS PART SHOULD BE RIGHT ALIGNED-->
 .nav-container {
 	display: flex;
-	justify-content: space-around;
+	flex-flow:row wrap;
+	justify-content: flex-end;
 }
 
 .item {
