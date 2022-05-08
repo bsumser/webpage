@@ -31,7 +31,6 @@ a:active {
 <!--THIS PART SHOULD BE RIGHT ALIGNED-->
 .nav-container {
 	display: flex;
-	flex-flow: row wrap;
 	justify-content: flex-end;
 }
 
