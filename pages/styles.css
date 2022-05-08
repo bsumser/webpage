@@ -30,10 +30,9 @@ a:active {
 
 <!--THIS PART SHOULD BE RIGHT ALIGNED-->
 .nav-container {
-	display: inline-flex;
-	flex-direction: row;
-	justify-content: right;
-	flex: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-end;
 }
 
 .item {
