@@ -35,9 +35,8 @@ a:active {
 }
 
 .item {
-	width: 50px;
+	width: 30px;
 	height: 30px;
-	margin: 5px;
 	background-color: #3c3836;    /* Light gray */
 }
 
