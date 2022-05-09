@@ -34,3 +34,7 @@ a:active {
 	justify-content: flex-start;
 	align-items: flex-start;
 }
+
+.item {
+	text-align: center;
+}
