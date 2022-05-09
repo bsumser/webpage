@@ -28,7 +28,7 @@ a:active {
 }
 
 <!--THIS PART SHOULD BE RIGHT ALIGNED-->
-nav-container {
+.nav-container {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
