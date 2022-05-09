@@ -30,13 +30,9 @@ a:active {
 <!--THIS PART SHOULD BE RIGHT ALIGNED-->
 .nav-container {
 	display: flex;
-<<<<<<< HEAD
-	flex-direction: row;
-	justify-content: flex-end;	
-=======
-	flex-flow:row wrap;
-	justify-content: flex-end;
->>>>>>> bf65aa9813e5c01399b139c055a05b2e6737d3ca
+	flex-direction: row-reverse;
+	justify-content: flex-start;
+	align-items: flex-start;
 }
 
 .item {
