@@ -17,6 +17,14 @@ body {
 	padding: 10px 10px 10px 10px;
 }
 
+.box {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* The switch - the box around the slider */
 .switch {
 	position: relative;
