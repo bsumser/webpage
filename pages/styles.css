@@ -12,7 +12,7 @@ body {
 
 .text-container {
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 }
 
 .item {
@@ -27,7 +27,7 @@ body {
   height: 126px;
 	padding: 10px 10px 10px 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
 }
 
 @media screen and (max-width:990px) {
