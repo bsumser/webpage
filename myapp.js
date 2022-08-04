@@ -1,5 +1,7 @@
 var express = require("express");
 var app = express();
+var mysql = require('mysql');
+const PORT = 3001;
 
 app.use(express.static('public'));
 
@@ -8,7 +10,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'Fusion,1488',
-  database: "ExpressIntegration"       
+  database: "information_schema"       
 });
 
 // open the MySQL connection
@@ -26,7 +28,7 @@ connection.connect(error => {
     })
 });
 
-var server = app.listen(3000, (error), function(){
+var server = app.listen(3000, function(error){
     var port = server.address().port;
 
     if (!error)
