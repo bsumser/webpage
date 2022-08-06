@@ -8,9 +8,9 @@ app.use(express.static('public'));
 // Create a connection to the database
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: 'Fusion,1488',
-  database: "information_schema"       
+  user: 'keeper',
+  password: 'Chronicler_666',
+  database: "web"       
 });
 
 // open the MySQL connection
