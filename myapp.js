@@ -28,6 +28,8 @@ connection.connect(error => {
     })
 });
 
+module.exports = connection; //connection for use in other scripts
+
 var server = app.listen(3000, function(error){
     var port = server.address().port;
 
