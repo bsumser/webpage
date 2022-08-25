@@ -147,5 +147,6 @@ function ForceGraph({
       .on("end", dragended);
   }
 
+  console.log("graph generated")
   return Object.assign(svg.node(), {scales: {color}});
 }
