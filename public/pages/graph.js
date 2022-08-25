@@ -4,6 +4,9 @@ import * as d3 from '../../d3.js';
 // Copyright 2021 Observable, Inc.
 // Released under the ISC license.
 // https://observablehq.com/@d3/force-directed-graph
+function debug(){
+  console.log("function called");
+}
 
 function loadGraph(){
     var graphData = loadJSON();
@@ -12,7 +15,6 @@ function loadGraph(){
 
 function loadJSON(){
     var parsedJSON = require('./graph.json');
-
     return parsedJSON;
 }
 
