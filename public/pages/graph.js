@@ -1,4 +1,4 @@
-import * as d3 from 'd3';
+import * as d3 from 'd3.js';
 // TODO: Change this to be an absolute path
 
 // Copyright 2021 Observable, Inc.
