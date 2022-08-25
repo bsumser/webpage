@@ -12,9 +12,8 @@ function loadGraph(){
 
 function loadJSON(){
     var parsedJSON = require('./graph.json');
-    var result = parsedJSON.movies;
 
-    return result;
+    return parsedJSON;
 }
 
 function ForceGraph({
