@@ -7,9 +7,16 @@
     <title>D3 Bar Chart</title>
 </head>
 <body>
-    <h2> D3 Bar Chart</h2>
-    <svg class="bar-chart"></svg>
-</body>
+    <h2> D3 Graph</h2>
+<div id="main-graph">
+      <svg id="note-graph" class="rounded-lg">
+      <defs>
+        <filter x="0" y="0" width="1" height="1" id="solid">
+          <feflood flood-color="#f7f7f7" flood-opacity=".9"></feflood>
+          <fecomposite in="SourceGraphic" operator="xor"></fecomposite>
+        </filter>
+      </defs>
+      <rect id="base_rect" width="100%" height="100%" class="fill-slate-100 dark:fill-neutral-700"></rect></svg>
+    </div></body>
+    <script type="module" src="graph.js"></script>
 </html>
-
-<script type="module" src="graph.js"></script>
