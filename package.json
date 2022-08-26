@@ -2,9 +2,11 @@
   "dependencies": {
     "d3": "^7.6.1",
     "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
     "mssql": "^8.1.2",
     "mysql": "^2.18.1",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.19"
   },
   "name": "html",
   "version": "1.0.0",
