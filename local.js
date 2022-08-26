@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const { engine } = require('express-handlebars');
 const app = express();
 app.use(express.static('public'));
@@ -9,9 +10,23 @@ app.set('views', './views');
 app.get('/', (req, res) => {
     res.render('home');
 });
-app.get('/api/data', (req, res) => {
-    const data = [100, 50, 300, 40, 350, 250]; // assuming this is coming from the database
-    res.json(data);
-});
+
+//app.get('./graphJSON.json', (req, res, next) => {
+//    fs.readFile('./graphJSON.json', (err, data) => {
+//        if (err) {
+//            next(err)
+//        }else {
+//            res.json(data)
+//        }
+//    })
+//});
+
+//fs.readFile('./public/pages/graphJSON.json', (err, data) => {
+//    if (err) throw err;
+//    let graphData = JSON.parse(data);
+//    console.log(graphData);
+//});
+
+console.log('This is after the read call');
 
 app.listen(3000);
