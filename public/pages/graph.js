@@ -35,7 +35,7 @@ d3.json(graph_name).then(function(data) {
         }
         return d.radius;
     };
-    var color = "#282828";
+    var color = "#ebdbb2";
 
     // Number of colors is the number of clusters (given by communityLabel)
     var num_colors = Math.max(...data.nodes.map(d => d.communityLabel)) + 1;
@@ -87,7 +87,7 @@ d3.json(graph_name).then(function(data) {
     };
     // Make nodes interactive to hovering
     var handleMouseOver = (d, i) => {
-        nde = d3.select(d.currentTarget);
+        var nde = d3.select(d.currentTarget);
         nde.attr("fill", "#999")
             .attr("r", nde.attr("r") * 1.4);
 
@@ -105,7 +105,7 @@ d3.json(graph_name).then(function(data) {
             .attr("stroke-width", 8);
     };
     var handleMouseOut = (d, _) => {
-        nde = d3.select(d.currentTarget);
+        var nde = d3.select(d.currentTarget);
         nde.attr("fill", nodeColor)
             .attr("r", nde.attr("r") / 1.4);
 
@@ -154,7 +154,7 @@ d3.json(graph_name).then(function(data) {
           .data(nodes)
           .join("a")
           .attr("xlink:href", d => {
-              return "/notes/" + d.lnk;
+              return "./notes/" + d.lnk + ".html";
           })
           .attr("id", d => "circle_" + d.lnk)
           .append("circle")
