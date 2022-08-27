@@ -35,7 +35,7 @@ d3.json(graph_name).then(function(data) {
         }
         return d.radius;
     };
-    var color = "#ffffff";
+    var color = "#282828";
 
     // Number of colors is the number of clusters (given by communityLabel)
     var num_colors = Math.max(...data.nodes.map(d => d.communityLabel)) + 1;
@@ -45,13 +45,13 @@ d3.json(graph_name).then(function(data) {
     var centersy = angleArr.map(x => Math.sin(Math.PI + x));
     // Color palette
     var nodeColors = [
-        '#C98914',
-        '#C55F1A',
-        '#4189AD',
-        '#007500',
-        '#968674',
-        '#5E998A',
-        "#363ea9",
+        '#cc241d',
+        '#98971a',
+        '#d79921',
+        '#458588',
+        '#b16286',
+        '#689d6a',
+        "#a89984",
     ];
     // Color function just maps cluster to color palette
     var nodeColor = d => {
