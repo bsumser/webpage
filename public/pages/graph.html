@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D3 Bar Roam Graph</title>
+    <link rel="stylesheet" href="notes/styles.css">
+
+    <title>Zettelkasten</title>
 </head>
 <body>
-    <h2>D3 Graph</h2>
+    <h2>Zettelkasten Notes Graph</h2>
 <div id="main-graph">
       <svg id="note-graph" class="rounded-lg">
       <defs>
@@ -16,7 +18,7 @@
           <fecomposite in="SourceGraphic" operator="xor"></fecomposite>
         </filter>
       </defs>
-      <rect id="base_rect" width="100%" height="100%" class="fill-[#282828]"></rect></svg>
+      <rect id="base_rect" width="75%" height="75%" style="fill:#a89984"></rect></svg>
     </div></body>
     <script type="module" src="graph.js"></script>
 </html>
