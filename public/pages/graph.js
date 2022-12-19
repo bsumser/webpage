@@ -1,4 +1,8 @@
-import * as d3 from "https://cdn.skypack.dev/d3@7";
+import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.7.0/+esm";
+
+//this isnt working as of 12/19/2022, above line is from:
+// https://github.com/d3/d3/issues/3607
+// import * as d3 from "https://cdn.skypack.dev/d3@7";
 
 let is_full = false;
 let graph_name = "./graph.json";
