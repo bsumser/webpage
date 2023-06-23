@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
   </head>
 
@@ -17,18 +17,20 @@
       }
     </style>
     <canvas id="myCanvas" width="480" height="320"></canvas>
-    <p1>
       <label for="name">Name (4 to 8 characters):</label>
       <input type="text" id="name_entry" name="name" required
-             minlength="4" maxlength="8" <script>
-             
+             minlength="4" maxlength="8" size="10">
+      <button type="button" onclick="myFunction()">Try it</button>
+      <p id="demo"></p>
+
+      <script>
              // Here the value is stored in new variable x 
              function myFunction() {
                  var x = document.getElementById("name_entry").value;
                  document.getElementById("demo").innerHTML = x;
+                 console.log(x);
              }
-             </script>ize="10">
-    </p1>
+    </script>
   </body>
 
   </html>
