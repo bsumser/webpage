@@ -1,4 +1,4 @@
-var secret = "brexie,87125"; //secret variable for github webhook
+var secret = "bsumser1488"; //secret variable for github webhook
 //var repo = "/";       //project dir
 
 let http = require('http');     //webserver for hashing secret
