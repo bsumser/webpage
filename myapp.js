@@ -1,6 +1,6 @@
-var express = require("express");
-var app = express();
-var mysql = require('mysql');
+const express = require("express");
+const app = express();
+const mysql = require('mysql');
 const PORT = 3001;
 
 app.use(express.static('public'));
@@ -30,12 +30,11 @@ connection.connect(error => {
 
 module.exports = connection; //connection for use in other scripts
 
-var server = app.listen(3000, function(error){
-    var port = server.address().port;
+const server = app.listen(3000, function(error){
+    const port = server.address().port;
 
     if (!error)
         console.log("Server started at http://localhost:%s", port);
     else
         console.log("Error occurred, server cant start", error)
 });
-
