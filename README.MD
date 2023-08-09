@@ -17,7 +17,7 @@ For the Zettelkasten notes graph, org-publish is used to generate html files fro
 
 ## SSL Certification
 
-SSL certification aquired by using CertBot and following this [guide](https://certbot.eff.org/instructions?ws=apache&os=ubuntufocal).
+SSL certification acquired by using CertBot and following this [guide](https://certbot.eff.org/instructions?ws=apache&os=ubuntufocal).
 
 
 ## Credits
