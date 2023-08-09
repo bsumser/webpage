@@ -2,6 +2,7 @@
 
 - [Description](#description)
 - [Tech Stack](#techstack)
+- [SSL Cert](#sslcert)
 - [Credits](#credits)
 
 ## Description
@@ -13,6 +14,11 @@ The website runs on an AWS EC2 t2.micro instance running Ubuntu.
 The server runs Apache as a front proxy for the Node JS backend that handles the website functionality.
 
 For the Zettelkasten notes graph, org-publish is used to generate html files from the org-roam notes that I write.
+
+## SSL Certification
+
+SSL certification aquired by using CertBot and following this [guide](https://certbot.eff.org/instructions?ws=apache&os=ubuntufocal).
+
 
 ## Credits
 
