@@ -1,4 +1,4 @@
-const connection = require('../../myapp.js');
+//const connection = require('../../myapp.js');
 
 function performQuery(value) {
     var query = document.getElementById("score_entry").value;    //get text box 
@@ -6,7 +6,7 @@ function performQuery(value) {
 
     console.log(query);     //log query for debug
 
-    query = "SELECT * FROM hi_score;"  //concat query with score
+    query = "INSERT INTO hi_score" + value + "hi_score;"  //concat query with score
     console.log(query);     //log query for debug
     
     connection.query(query, function (err, result, fields) {
@@ -16,5 +16,4 @@ function performQuery(value) {
     });
 }
 
-
-connection.end();
+//connection.end();
