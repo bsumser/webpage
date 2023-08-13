@@ -1,4 +1,4 @@
-//const connection = require('../../myapp.js');
+const connection = require('../../myapp.js');
 
 function insertScore() {
     let score = document.getElementById("score_entry").value;    //get text box 
@@ -24,4 +24,4 @@ function loadScores() {
     });
 }
 
-//connection.end();
+connection.end();
