@@ -1,9 +1,9 @@
-//const connection = require('../../myapp.js');
+import connection from '../../myapp.js';
 
 function insertScore() {
     let score = document.getElementById("score_entry").value;    //get text box 
 
-    let query = "INSERT INTO hi_score(" + score + ");"  //concat query with score
+    let query = "INSERT INTO hi_score(" + score + ");";  //concat query with score
     console.log(query);     //log query for debug
     
     connection.query(query, function (err, result, fields) {
@@ -24,4 +24,4 @@ function loadScores() {
     });
 }
 
-//connection.end();
+connection.end();
