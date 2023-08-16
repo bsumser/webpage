@@ -1,4 +1,19 @@
-import connection from '../../myapp.js';
+const mysqlConf = require(config.js).mysql_pool;
+
+// open the MySQL connection
+//connection.connect(error => {
+//    if (error){
+//        console.log("A error has been occurred "
+//            + "while connecting to database.");
+//        throw error;
+//    }
+//
+//    //If Everything goes correct, Then start Express Server
+//    app.listen(PORT, ()=>{
+//        console.log("Database connection is Ready and "
+//             + "Server is Listening on Port ", PORT);
+//    })
+//});
 
 function insertScore() {
     let score = document.getElementById("score_entry").value;    //get text box 
