@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-//const connection = require('../../myapp.js');
-=======
 const mysqlConf = require(config.js).mysql_pool;
 
 // open the MySQL connection
@@ -17,12 +14,11 @@ const mysqlConf = require(config.js).mysql_pool;
 //             + "Server is Listening on Port ", PORT);
 //    })
 //});
->>>>>>> Stashed changes
 
 function insertScore() {
     let score = document.getElementById("score_entry").value;    //get text box 
 
-    let query = "INSERT INTO hi_score(" + score + ");"  //concat query with score
+    let query = "INSERT INTO hi_score(" + score + ");";  //concat query with score
     console.log(query);     //log query for debug
     
     connection.query(query, function (err, result, fields) {
@@ -43,4 +39,4 @@ function loadScores() {
     });
 }
 
-//connection.end();
+connection.end();
