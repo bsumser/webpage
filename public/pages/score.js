@@ -15,7 +15,7 @@ const mysqlConf = require(config.js).mysql_pool;
 //    })
 //});
 
-function insertScore() {
+function {
     let score = document.getElementById("score_entry").value;    //get text box 
 
     let query = "INSERT INTO hi_score(" + score + ");";  //concat query with score
