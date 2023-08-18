@@ -1,14 +1,13 @@
 const express = require("express");
-const app = express();
 const mysql = require('mysql');
+const app = express();
 const PORT = 3001;
 
 app.use(express.static('public'));
 
-const config;
-const config = {
+var config;
+config = {
   mysql_pool : mysql.createPool({
-const connection = mysql.createConnection({
   host: 'localhost',
   user: 'keeper',
   password: 'Chronicler_666',
