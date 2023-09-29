@@ -1,4 +1,5 @@
 import requests
+import re
 import pandas as pd
 from bs4 import BeautifulSoup
 
@@ -33,11 +34,30 @@ def fish_call(url, date):
 
     print(results)
 
-    headers = []
-    for i in results.find_all('th'):
-        title = i.text
-        headers.append(title)
+    for table in results:
+        headers = []
+        for i in table.find_all('th'):
+            title = i.text
+            headers.append(title)
+
+    print("-------------GETTING HEADERS-------------------------")
     print(headers)
+
+    #declare pondas dataframe to store data
+    fish_table_data = pd.DataFrame(columns = headers)
+
+    for table in results:
+        for j in table.find_all("tr")[1:]:
+            print("-------------GETTING ROW DATA-------------------------")
+            row_data = table.find_all("td")
+            print(row_data)
+
+            for row in row_data:
+                row_text = row.get_text()
+                row_text
+                print(row_text)
+
+    print(fish_table_data)
 
 
 if __name__ == "__main__":
