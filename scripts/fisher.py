@@ -51,11 +51,16 @@ def fish_call(url, date):
             print("-------------GETTING ROW DATA-------------------------")
             row_data = table.find_all("td")
             print(row_data)
-
+    
+            rows = []
             for row in row_data:
                 row_text = row.get_text()
-                row_text
-                print(row_text)
+                " ".join(row_text.split())
+                rows.append(row_text)
+            
+            rows = [string.replace("\t", "") for string in rows]
+            #rows = [string.split("\n",) for string in rows]
+            print(rows)
 
     print(fish_table_data)
 
