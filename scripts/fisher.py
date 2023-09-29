@@ -1,5 +1,7 @@
 import requests
 import pandas as pd
+from bs4 import BeautifulSoup
+
 
 
 def main():
@@ -8,7 +10,7 @@ def main():
     # date format is:
     #2023-09-18
     start_date = "2023-1-1"
-    end_date = "2023-6-25"
+    end_date = "2023-1-1"
     daterange = pd.date_range(start_date, end_date)
 
     for single_date in daterange:
@@ -23,9 +25,20 @@ def fish_call(url, date):
 
     print("fishing data from url - %s\n------day:%s\n" % (url, date))
 
-    #page = requests.get(url)
+    page = requests.get(url)
 
-    #print(page.text)
+    soup = BeautifulSoup(page.content, "html.parser")
+
+    results = soup.find_all("table", class_="table table-stripped")
+
+    print(results)
+
+    headers = []
+    for i in results.find_all('th'):
+        title = i.text
+        headers.append(title)
+    print(headers)
+
 
 if __name__ == "__main__":
     main()
