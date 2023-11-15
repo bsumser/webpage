@@ -22,13 +22,38 @@ body {
   color: #fbf1c7;
   background-color: #282828;
   font-size: 16px;
-  max-width: 800px;
+  max-width: 1280px;
   margin: auto;
 }
 
-div {
-	width: 50%;
-	margin: auto;
+.topnav {
+  background-color: var(--grey2);
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav-right {
+  float:right
+}
+
+/* Change link color on hover */
+.topnav a:hover {
+  background-color: var(--bg);
+  color: #fbf1c7;
+}
+
+/* Add color to current/active link*/
+.topnav a:active {
+  background-color: var(--bg);
+  color: #fbf1c7;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -46,7 +71,6 @@ h2 {
 }
 
 p {
-	background-color: #3c3836;    /* Light gray */
 	margin-top: 5px;
 }
 
