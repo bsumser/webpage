@@ -56,6 +56,37 @@ body {
   color: #fbf1c7;
 }
 
+/* AOC hub flex container */
+.flex-grid {
+  display: flex;
+}
+
+.col {
+  flex: 1;
+  text-align: center;
+}
+
+.col-item{
+  border-style: groove;
+  border-color: var(--fg);
+  height: 150;
+  width: 150;
+}
+
+p.header.text-center {
+  text-align: center;
+}
+
+p.text-center {
+  text-align: center;
+}
+
+.inactiveLink {
+   pointer-events: none;
+   cursor: default;
+}
+/* AOC hub flex container */
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Source Sans Pro", sans-serif;
 }
