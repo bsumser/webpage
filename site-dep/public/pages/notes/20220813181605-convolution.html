@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-08-28 Sun 14:00 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Convolution</title>
+<meta name="author" content="Brett Sumser" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="styles.css" />
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Convolution</h1>
+<p>
+Calculating a convolution of an Image with C++: Image Processing. Test update new
+</p>
+
+<p>
+\[g(x,y) = \Sigma{k=-n_2}^{n_2} \Sigma{j=-m_2}^{m_2} h(j,k)f(x-j, y-k)\]
+</p>
+
+<p>
+Algorithm for a single pixel convolution:
+</p>
+
+<p>
+#+BEGIN<sub>EXAMPLE</sub>
+Create a Kernel of size 3×3 and fill the kernel with coefficients
+sum = 0
+for k = -1 to 1 do
+   for j = -1 to 1 do
+      sum = sum + h(j +1, k + 1)*f(x – j, y – k)
+   end for
+end for
+g(x, y) = sum#+END<sub>EXAMPLE</sub>
+</p>
+
+<p>
+Algorithm for an entire image:
+#+BEGIN<sub>EXAMPLE</sub>
+for y = 0 to image<sub>height</sub> do
+   for x = 0 to image<sub>width</sub> do
+      perform single pixel convolution
+   end for
+end for
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Sumser</p>
+<p class="date">Created: 2022-08-28 Sun 14:00</p>
+</div>
+</body>
+</html>
