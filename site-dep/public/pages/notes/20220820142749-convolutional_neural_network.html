@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-08-31 Wed 21:30 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>convolutional-neural-network</title>
+<meta name="author" content="Brett Sumser" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="styles.css" />
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">convolutional-neural-network</h1>
+<p>
+Convolutional Neural Networks are a class of neural network specializing in processing data with a grid topology, like images.
+Typically, they have 3 layers: <a href="20220813181605-convolution.html#ID-f1cc26e1-3e74-4988-92a3-9727beb02045">convolution</a>, <a href="20220820143557-pooling.html#ID-d80cda4f-2a3d-4ac3-b601-455998fcfc56">pooling</a>, and a <a href="20220822020719-neural_networks.html#ID-de7a3a8b-a692-46cf-af53-da44d04885b8">fully connected layer</a>.
+</p>
+
+<p>
+Given an input size of W x W x D, with Dout number of kernels and spatial size of F, stride S and padding P, output size volume can
+be determined by this formula:
+</p>
+
+<p>
+\[W_{out} = \frac{W - F + 2P}{S} + 1\].
+</p>
+
+<p>
+Add more things.
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Sumser</p>
+<p class="date">Created: 2022-08-31 Wed 21:30</p>
+</div>
+</body>
+</html>
