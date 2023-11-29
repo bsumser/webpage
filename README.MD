@@ -9,7 +9,9 @@
 
 ## Tech Stack
 
-The website runs on an AWS EC2 t2.micro instance running Ubuntu.
+The website's node.js backend runs on an AWS EC2 t2.micro instance running Ubuntu. 
+
+The frontend is made utilizing react, and hosted on an AWS S3 bucket.
 
 The server runs Apache as a front proxy for the Node JS backend that handles the website functionality.
 
@@ -17,7 +19,7 @@ For the Zettelkasten notes graph, org-publish is used to generate html files fro
 
 ## SSL Certification
 
-SSL certification acquired by using CertBot and following this [guide](https://certbot.eff.org/instructions?ws=apache&os=ubuntufocal).
+SSL certification is issued through using AWS's Cloudfront CDN.
 
 
 ## Credits
