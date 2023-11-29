@@ -1,8 +1,15 @@
 const express = require("express")
 require('dotenv').config()
-const mysql = require('mysql');
-const PORT = process.env.SERVER_PORT
+
 const app = express();
+const http = require("http")
+const PORT = process.env.SERVER_PORT
+const server = http.createServer(app)
+const { Server } = require("socket.io")
+
+const io = new Server(server);
+
+const mysql = require('mysql');
 
 const con = mysql.createConnection({
   host: "localhost",
@@ -10,12 +17,16 @@ const con = mysql.createConnection({
   password: "yourpassword"
 });
 
+io.on('connection', (socket) => {
+  console.log('a user connected');
+});
+
 //con.connect(function(err) {
 //  if (err) throw err;
 //  console.log("Connected!");
 //});
 
-const server = app.listen(PORT, function(error){
+server.listen(PORT, function(error){
 
     if (!error)
         console.log("Server started at http://localhost:%s", PORT);
