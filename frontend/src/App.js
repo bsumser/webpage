@@ -12,6 +12,7 @@ import {
 import Home from './components/home'
 import AOC from './components/aoc-hub'
 import Navbar from "./components/navbar";
+import Test from "./components/test";
 
 function App(){
 
@@ -30,6 +31,11 @@ function App(){
                             exact
                             path="/aoc-hub"
                             element={<AOC />}
+                        />
+                        <Route
+                            exact
+                            path="/test"
+                            element={<Test />}
                         />
                         <Route
                             path="*"
