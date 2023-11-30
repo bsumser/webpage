@@ -1,35 +1,33 @@
-const express = require("express")
-require('dotenv').config()
-
+const express = require('express');
 const app = express();
-const http = require("http")
-const PORT = process.env.SERVER_PORT
-const server = http.createServer(app)
-const { Server } = require("socket.io")
+const PORT = 4000;
 
-const io = new Server(server);
+//New imports
+const http = require('http').Server(app);
+const cors = require('cors');
 
-const mysql = require('mysql');
+app.use(cors());
 
-const con = mysql.createConnection({
-  host: "localhost",
-  user: "yourusername",
-  password: "yourpassword"
+const socketIO = require('socket.io')(http, {
+    cors: {
+        origin: "http://localhost:3000"
+    }
 });
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
+//Add this before the app.get() block
+socketIO.on('connection', (socket) => {
+    console.log(`⚡: ${socket.id} user just connected!`);
+    socket.on('disconnect', () =>{
+      console.log('🔥: A user disconnected');
+    });
 });
 
-//con.connect(function(err) {
-//  if (err) throw err;
-//  console.log("Connected!");
-//});
+app.get('/api', (req, res) => {
+  res.json({
+    message: 'Hello world',
+  });
+});
 
-server.listen(PORT, function(error){
-
-    if (!error)
-        console.log("Server started at http://localhost:%s", PORT);
-    else
-        console.log("Error occurred, server cant start", error)
+http.listen(PORT, () => {
+  console.log(`Server listening on ${PORT}`);
 });
