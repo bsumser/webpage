@@ -1,11 +1,21 @@
-import socketIO from 'socket.io-client';
-const socket = socketIO.connect('http://localhost:4000');
+import { useEffect, useState } from 'react';
+import { useRef } from 'react';
+
 
 export default function Test() {
-  console.log(socket)
-  return (
-    <div>
-      <p>Hello World!</p>
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/message")
+      .then((res) => res.json())
+      .then((data) => setData(data.message));
+  }, []);
+
+return (
+    <div className="App">
+      <header className="App-header">
+        <p>{!data ? "Loading..." : data}</p>
+      </header>
     </div>
   );
 }
