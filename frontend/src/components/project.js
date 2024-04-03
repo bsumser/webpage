@@ -5,7 +5,7 @@ const Project = (props) => {
         <>
         <div>{props.title}</div>
         <div>{props.summary}</div>
-        <div>{props.image}</div>
+        <img src={`images/${props.image}`}/>
         </>
     )
 }
