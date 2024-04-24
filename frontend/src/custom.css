@@ -1,21 +1,22 @@
 /* Neat css framework*/
 /* https://neat.joeldare.com/neat.html */
+
 :root {
     color-scheme: light dark;
-    --light: #fff;
+    --light: #ebdbb2;
     --lesslight: #efefef;
-    --dark: #404040;
+    --dark: #282828;
     --moredark: #000;
     --link: royalblue;
     border-top: 5px solid var(--dark);
     line-height: 1.5em;
-    font-family: system-ui, sans-serif;
+    font-family: 'Source Code Pro';
     font-size: 16px;
 }
 
 * {
     box-sizing: border-box;
-    color: var(--dark);
+    color: var(--light);
 }
 
 h1 {
@@ -45,12 +46,13 @@ code {
 }
 
 body {
-    background-color: var(--light);
+    background-color: var(--dark);
     margin: 0;
     max-width: 800px;
     padding: 0 20px 20px 20px;
     margin-left: auto;
     margin-right: auto;
+    font-family: 'Source Code Pro';
 }
 
 a {
@@ -108,7 +110,6 @@ button + button, .button + .button, input[type=submit] + input[type=submit] {
     text-decoration: none;
     font-weight: bold;
 }
-
 
 /* Desktop sizes */
 @media (min-width: 600px) {
