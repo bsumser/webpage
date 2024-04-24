@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import './App.css'
+import './custom.css'
 
 import {
     BrowserRouter as Router,
