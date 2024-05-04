@@ -7,7 +7,7 @@ const Home = () => {
           <Project 
           title="Neural Network"
           summary="Project summary goes here"
-          image="image.png"
+          image="./img/image.png"
           />
         </>
     )
