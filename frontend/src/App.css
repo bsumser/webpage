@@ -20,37 +20,15 @@
 }
 
 .main_container {
-  background-color: #282828;
-  width: 1440px;
+  background-color: var(--bg);
   text-align: center;
+  margin: auto;
 }
 
 .main_wrapper {
-  background-color: #282828;
-  margin: 0 auto 0 auto;
-  min-height: 100vh;
-  text-align: center;
-  width: 75%;
-}
-
-body {
-  color: #fbf1c7;
-  background-color: #282828;
-  font-size: 16px;
-  max-width: 1440px;
+  background-color: var(--bg);
   margin: auto;
-  font-family: 'Source Code Pro';
-}
-
-button {
-  color: var(--yellow);
-  background-color: var(--grey2);
-  padding: 10px 20px;
-  font-size: 20px;
-}
-
-button:hover {
-  background: var(--grey2);
+  text-align: center;
 }
 
 .header {
@@ -61,7 +39,7 @@ button:hover {
     text-align: center;
 }
 
-/* AOC hub grid container */
+/* AOC hub grid container start*/
 
 .month-grid {
   display: grid;
@@ -70,12 +48,6 @@ button:hover {
   grid-auto-flow: row;
   text-align: center;
   margin: auto;
-}
-
-@media screen and (max-width: 768px) {
-  .month-grid {
-      display: block !important;
-  }
 }
 
 .col-item{
@@ -106,7 +78,7 @@ p.text-center {
    pointer-events: none;
    cursor: default;
 }
-/* AOC hub grid container */
+/* AOC hub grid container end */
 
 /*React Navbar*/
 .container {
@@ -125,14 +97,11 @@ p.text-center {
   position: relative;
 }
 
-.home a {
+.home-nav a {
+  display: flex;
   font-size: 20px;
   font-weight: 400;
-  color: #2f234f;
   text-decoration: none;
-}
-
-.nav-elements {
 }
 
 .nav-elements ul {
@@ -168,24 +137,6 @@ p.text-center {
   background-color: #574c4c;
 }
 /*React Navbar END*/
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Source Sans Pro", sans-serif;
-}
-
-h1 {
-  font-size: 1.6em;
-  text-align: middle;
-  margin-bottom: 5px;
-}
-
-h2 {
-  font-size: 1.4em;
-}
-
-p {
-	margin-top: 5px;
-}
 
 a:link {
 	text-decoration: none;
