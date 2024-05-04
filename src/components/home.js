@@ -11,7 +11,9 @@ const Home = () => {
 	    		a restaurant. I thought that making a neural network that was able to differentiate
 	    		between different varietals of wine would be educational for my future projects."
 
-          //image="./img/image.png"
+          image="./img/image.png"
+          
+          link="https://github.com/bsumser/neuralNetwork"
           />
           
           <Project 
@@ -22,7 +24,9 @@ const Home = () => {
 	    		were studied, and we attempted to implement various parallel computing technology such as
 	    		MPI, or OpenMP."
 
-          //image="./img/image.png"
+          image="./img/image.png"
+
+          link="https://github.com/bsumser/fourierTransformer"
           />
         </>
     )
