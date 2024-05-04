@@ -13,6 +13,7 @@ const Navbar = () => {
                   <li><a href="https://github.com/bsumser">github</a></li>
                   <li><NavLink to ="/aoc-hub">aoc</NavLink></li>
                   <li><a href="mailto:bsumser@gmail.com">contact</a></li>
+                  <li><NavLink to ="/photo">photo</NavLink></li>
                 </ul>
             </div>
         </nav>
