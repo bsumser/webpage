@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { useState } from "react";
 
 import './App.css'
 import './custom.css'
@@ -17,12 +18,12 @@ import Navbar from "./components/navbar";
 import Test from "./components/test";
 
 function App(){
-
     return (
         <>
             {
                 <Router>
-                    <Navbar />
+                <Navbar>
+                </Navbar>
                     <Routes>
                         <Route
                             exact
