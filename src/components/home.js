@@ -3,7 +3,7 @@ import Project from './project'
 
 const Home = () => {
     return (
-        <>
+        <div className='home'>
           <Project 
           title="Machine Learning Neural Network"
 
@@ -28,7 +28,7 @@ const Home = () => {
 
           link="https://github.com/bsumser/fourierTransformer"
           />
-        </>
+        </div>
     )
 }
 

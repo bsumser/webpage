@@ -19,6 +19,11 @@
   --width: 1440px
 }
 
+.home {
+  min-width: 600px;
+  margin: 100px;
+}
+
 .main_container {
   background-color: var(--bg);
   text-align: center;
@@ -89,7 +94,7 @@ p.text-center {
   align-items: center;
   position: relative;
   height: 100%;  
-  width: 7%;  
+  min-width: 100px;  
   position: fixed; 
   z-index: 1; 
   top: 0; 
