@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 const MTG = () => {
     //const [posts, setPosts] = useState([]);
     useEffect(() => {
-       fetch('http://localhost:8080/', {method: ("GET")})
+       fetch('http://localhost:8080/deck?deck=Forest')
           .then((response) => response.json())
           .then((data) => {
              console.log(data);
