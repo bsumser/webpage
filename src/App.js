@@ -16,6 +16,7 @@ import AOC from './components/aoc-hub'
 import Photo from './components/photo'
 import Navbar from "./components/navbar";
 import Test from "./components/test";
+import MTG from "./components/mtg";
 
 function App(){
     return (
@@ -44,6 +45,11 @@ function App(){
                             exact
                             path="/test"
                             element={<Test />}
+                        />
+                        <Route
+                            exact
+                            path="/mtg"
+                            element={<MTG />}
                         />
                         <Route
                             path="*"
