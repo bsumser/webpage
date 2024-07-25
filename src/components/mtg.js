@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 const MTG = (props: Props) => {
-    //const [posts, setPosts] = useState([]);
-    const [deckText, setDeckText] = useState('');
-    //useEffect(() => {
-    //   fetch('http://localhost:8080/deck?deck=4%20Forest')
-    //      .then((response) => response.json())
-    //      .then((data) => {
-    //         console.log(data);
-    //      })
-    //      .catch((err) => {
-    //         console.log(err.message);
-    //      });
-    //}, []);
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
     e.preventDefault();
@@ -22,8 +16,7 @@ const MTG = (props: Props) => {
     const formData = new FormData(form);
 
     // You can pass formData as a fetch body directly:
-    fetch('/some-api', { method: form.method, body: formData });
-    fetch('http://localhost:8080/', { method: form.method, body: formData })
+    fetch('http://localhost:8080/deck?'+ inputValue)
        .then((response) => response.json())
        .then((data) => {
           console.log(data);
@@ -32,18 +25,17 @@ const MTG = (props: Props) => {
           console.log(err.message);
        });
 
-    // Or you can work with it as a plain object:
-    const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson);
+    console.log(inputValue);
   }
      return (
     <div>
          <h1>MTG TEST SITE</h1>
-         <form method="post" onSubmit={handleSubmit}>
+         <form onSubmit={handleSubmit}>
       <label>
         <textarea
-          name="postContent"
-          defaultValue="Enter deck here"
+          value={inputValue}
+          onChange={handleInputChange}
+          placeholder="Enter text here..."
           rows={4}
           cols={40}
         />

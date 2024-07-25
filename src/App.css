@@ -51,6 +51,7 @@ textarea {
     padding-top: 0;
     padding-left: 0;
     line-height: 1em;
+    white-space: pre-wrap;
 }
 
 /* AOC hub grid container start*/
