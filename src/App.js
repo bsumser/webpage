@@ -14,7 +14,6 @@ import {
 import Home from './components/home'
 import AOC from './components/aoc-hub'
 import Photo from './components/photo'
-import Navbar from "./components/navbar";
 import Test from "./components/test";
 import MTG from "./components/mtg";
 
@@ -23,8 +22,6 @@ function App(){
         <>
             {
                 <Router>
-                <Navbar>
-                </Navbar>
                     <Routes>
                         <Route
                             exact
