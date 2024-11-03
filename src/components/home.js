@@ -1,35 +1,25 @@
 import React from 'react'
-import Project from './project'
+import Navbar from "./navbar"
 
 const Home = () => {
     return (
-        <div className='home'>
-          <Project 
-          title="Machine Learning Neural Network"
-
-          summary="The inspiration for this project was my experience working with wine in
-	    		a restaurant. I thought that making a neural network that was able to differentiate
-	    		between different varietals of wine would be educational for my future projects."
-
-          image="./img/image.png"
-          
-          link="https://github.com/bsumser/neuralNetwork"
-          />
-          
-          <Project 
-          title="C++ implementation of the Fourier Transform"
-
-          summary="This was a 2 person group project for a
-	    		course focused on high performance parallel computing. Different versions of fast fourier transform algorithms
-	    		were studied, and we attempted to implement various parallel computing technology such as
-	    		MPI, or OpenMP."
-
-          image="./img/image.png"
-
-          link="https://github.com/bsumser/fourierTransformer"
-          />
+      <div className = "grid">
+      <Navbar>
+      </Navbar>
+        <div className = "content">
+          <h1>Brett Sumser</h1>
+          <p>Write about yourself.</p>
+      
+      
+          <h1>Contact</h1>
+          <p>b</p>
+      
+      
+          <h1>Personal Projects</h1>
         </div>
-    )
+        <div className = "right-margin">Text</div>
+      </div>
+    );
 }
 
 export default Home
