@@ -1,0 +1,13 @@
+name: website
+services:
+- name: frontend
+  github:
+    repo: bsumser/webpage/your-repo-name
+    branch: master
+  run_command: npm run start
+  environment:
+    - name: PORT
+      value: 443
+  routes:
+  - path: /
+    dest: /
