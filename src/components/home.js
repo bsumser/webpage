@@ -4,6 +4,8 @@ import Project from './project'
 const Home = () => {
     return (
         <>
+        <script data-goatcounter="https://bsumser.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
           <Project 
           title="Machine Learning Neural Network"
 
