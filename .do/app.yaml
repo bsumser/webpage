@@ -2,7 +2,7 @@ name: website
 services:
 - name: frontend
   github:
-    repo: bsumser/webpage/your-repo-name
+    repo: bsumser/webpage
     branch: master
   run_command: npm run start
   environment:
