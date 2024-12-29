@@ -20,6 +20,8 @@ function App(){
 
     return (
         <>
+        <script data-goatcounter="https://bsumser.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
             {
                 <Router>
                     <Navbar />
