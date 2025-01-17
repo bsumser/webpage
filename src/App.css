@@ -1,167 +1,42 @@
-:root {
-  --bg: #282828;
-  --red: #cc241d;
-  --green: #98971a;
-  --yellow: #d79921;
-  --blue: #458588;
-  --purple: #b16286;
-  --aqua: #689d6a;
-  --grey: #a89984;
-  
-  --grey2: #928374;
-  --red: #fb4934;
-  --green: #b8bb26;
-  --yellow: #fabd2f;
-  --blue: #83a598;
-  --purple: #d3869b;
-  --aqua: #8ec07c;
-  --fg: #ebdbb2;
-  --width: 1440px
-}
-
-.main_container {
-  background-color: var(--bg);
-  text-align: center;
-  margin: auto;
-}
-
-.main_wrapper {
-  background-color: var(--bg);
-  margin: auto;
-  text-align: center;
-}
-
-.header {
-    text-decoration: none;
-    color: var(--fg);
-    text-shadow: 0 0 2px var(--fg), 0 0 5px var(--fg);
-    font-size: 30px;
-    text-align: center;
-}
-
-/* AOC hub grid container start*/
-
-.month-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-auto-flow: row;
-  text-align: center;
-  margin: auto;
-}
-
-.col-item{
-  border-style: groove;
-  border-color: var(--fg);
-  text-align: center;
-  height: 300;
-  width: 300;
-}
-
-.col-item a {
-    text-decoration: none;
-    color: var(--fg);
-    text-shadow: 0 0 2px var(--fg), 0 0 5px var(--fg);
-    font-size: 20px;
-    text-align: center;
-}
-
-p.header.text-center {
-  text-align: center;
-}
-
-p.text-center {
-  text-align: center;
-}
-
-.inactiveLink {
-   pointer-events: none;
-   cursor: default;
-}
-/* AOC hub grid container end */
-
-/*React Navbar*/
-.container {
-  max-width: var(--width);
+#root {
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
+  padding: 2rem;
+  text-align: center;
 }
 
-.navbar {
-  height: 60px;
-  background-color: var(--grey2);
-  position: relative;
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-.home-nav a {
-  display: flex;
-  font-size: 20px;
-  font-weight: 400;
-  text-decoration: none;
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.nav-elements ul {
-  display: flex;
-  justify-content: space-between;
-  list-style-type: none;
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
 }
 
-.nav-elements ul li:not(:last-child) {
-  margin-right: 60px;
+.card {
+  padding: 2em;
 }
 
-.nav-elements ul a {
-  font-size: 20px;
-  font-weight: 400;
-  color: #2f234f;
-  text-decoration: none;
-}
-
-.nav-elements ul a.active {
-  color: #574c4c;
-  font-weight: 500;
-  position: relative;
-}
-
-.nav-elements ul a.active::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #574c4c;
-}
-/*React Navbar END*/
-
-a:link {
-	text-decoration: none;
-	color: #d79921;
-}
-
-a:visited {
-	text-decoration: none;
-	color: #d79921;
-}
-
-a:hover {
-	text-decoration: none;
-	color: #e3b763;
-}
-
-a:active {
-	text-decoration: none;
-	color: #d79921;
-}
-
-.alignleft {
-	float: left;
-}
-
-.alignright {
-	float: right;
+.read-the-docs {
+  color: #888;
 }
