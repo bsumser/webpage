@@ -29,8 +29,8 @@ const Main = () => {
                     />
                 </h2>
                 <div className="flex justify-between pt-6 max-w-[200px] w-full">
-                    <FaGithub className='cursor-pointer' size={20}/>
-                    <FaInstagram className="cursor-pointer" size={20}/>
+                    <FaGithub className='cursor-pointer' size={30} onClick={() => window.open('https://www.github.com/bsumser', '_blank')}/>
+                    <FaInstagram className="cursor-pointer" size={30}/>
                 </div>
             </div>
             </div>
