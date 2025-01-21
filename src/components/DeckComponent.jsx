@@ -4,13 +4,13 @@ const DeckComponent = ({ deck }) => {
   return (
     <div>
       <h2>Deck List</h2>
-      <ul>
+        <div className='grid sm:grid-cols-2 gap-12'>
         {deck.map((card, index) => (
-          <li key={index}>
-            {card.name} - {card.color || 'N/A'}
-          </li>
+          <div key={index}>
+            {card.name} {card.color || ''} {card.type}
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
