@@ -1,6 +1,7 @@
 import React from 'react'
 import ProjectItem from './ProjectItem'
 import propertyImage from '../assets/property.png'
+import aocImage from '../assets/aoc.png'
 
 const Projects = () => {
   return (
@@ -10,10 +11,10 @@ const Projects = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac posuere quam, quis aliquam tortor.
         </p>
         <div className='grid sm:grid-cols-2 gap-12'>
-            <ProjectItem img={propertyImage} title='GitHub' />
-            <ProjectItem img={propertyImage} title='GitHub' />
-            <ProjectItem img={propertyImage} title='GitHub' />
-            <ProjectItem img={propertyImage} title='GitHub' />
+            <ProjectItem img={propertyImage} title='Quack' desc='' link='https://github.com/bsumser/tiny_vm'/>
+            <ProjectItem img={aocImage} title='Advent of Code' desc='' link='https://github.com/bsumser/AOC'/>
+            <ProjectItem img={propertyImage} title='Neural Network' desc='' link='https://github.com/bsumser/neuralNetwork'/>
+            <ProjectItem img={propertyImage} title='GitHub' desc='' link='https://github.com/bsumser/tiny_vm'/>
         </div>
     </div>
   )
