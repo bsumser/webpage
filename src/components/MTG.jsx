@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-const MTG = (props) => {
-  const [deck, setDeck] = useState(null);
+const MTG = ({ onDeckData }) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (event) => {
@@ -17,13 +16,11 @@ const MTG = (props) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setDeck(data); // Update the deck state with the fetched data
+        onDeckData(data); // Pass the data back to App via the callback
       })
       .catch((err) => {
         console.log(err.message);
       });
-
-    console.log(inputValue);
   };
 
   return (
