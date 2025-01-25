@@ -21,10 +21,10 @@ function App() {
       <Main />
       <Work />
       <Projects />
-      {/*<MTG onDeckData={handleDeckData} /> {/* Pass handleDeckData as a prop to MTG */}
+      <MTG onDeckData={handleDeckData} /> {/* Pass handleDeckData as a prop to MTG */}
       
       {/* Render DeckComponent if deck data is available */}
-      {/*deck && <DeckComponent deck={deck} />*/}
+      {deck && <DeckComponent deck={deck} />}
     </div>
   );
 }
