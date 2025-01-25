@@ -12,7 +12,7 @@ const MTG = ({ onDeckData }) => {
     e.preventDefault();
 
     // Fetch new deck data based on user input
-    fetch('http://localhost:8080/deck?' + inputValue)
+    fetch('https://api.bsumser.dev/deck?' + inputValue)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
