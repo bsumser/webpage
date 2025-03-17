@@ -1,1 +1,0 @@
-12/27/2024: As of #234f897185bf682bbeee7f061da2ae0da8616533, action deploying to digital ocean droplet is working.
