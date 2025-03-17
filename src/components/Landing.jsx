@@ -13,6 +13,7 @@ const Landing = () => {
       <Main />
       <Work />
       <Projects />
+      <Photo />
     </div>
   );
 }
