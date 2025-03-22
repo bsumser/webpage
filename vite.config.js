@@ -8,7 +8,7 @@ export default defineConfig({
     {
       name: 'inject-goatcounter',
       transformIndexHtml(html) {
-        const goatCounterId = process.env.VITE_GOATCOUNTER_ID;  // Get the GoatCounter ID from environment variables
+        const goatCounterId = import.meta.env.VITE_GOATCOUNTER_ID;  // Get the GoatCounter ID from environment variables
         
         // Inject the GoatCounter script before the closing </body> tag
         return html.replace(
