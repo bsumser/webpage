@@ -8,16 +8,21 @@ export default defineConfig({
     {
       name: 'inject-goatcounter',
       transformIndexHtml(html) {
-        // Add the GoatCounter script tag before the closing </body> tag
+        const goatCounterId = process.env.VITE_GOATCOUNTER_ID;  // Get the GoatCounter ID from environment variables
+        
+        // Inject the GoatCounter script before the closing </body> tag
         return html.replace(
           '</body>',
           `
-            <script data-goatcounter="https://bsumser.goatcounter.com/count"
-              async src="//gc.zgo.at/count.js"></script>
+            <script async src="https://gc.zgo.at/count.js"></script>
+            <script>
+              window.goatcounter = window.goatcounter || {};
+              window.goatcounter.count = window.goatcounter.count || function() {};
+              window.goatcounter.id = '${goatCounterId}';  // Use environment variable for GoatCounter ID
             </script>
           </body>`
         );
       }
     }
-  ],
+  ]
 })
