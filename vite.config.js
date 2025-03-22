@@ -13,13 +13,7 @@ export default defineConfig({
         // Inject the GoatCounter script before the closing </body> tag
         return html.replace(
           '</body>',
-          `
-            <script async src="https://gc.zgo.at/count.js"></script>
-            <script>
-              window.goatcounter = window.goatcounter || {};
-              window.goatcounter.count = window.goatcounter.count || function() {};
-              window.goatcounter.id = '${goatCounterId}';  // Use environment variable for GoatCounter ID
-            </script>
+          `<script data-goatcounter="https://${goatCounterId}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
           </body>`
         );
       }
