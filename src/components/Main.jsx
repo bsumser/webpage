@@ -6,8 +6,6 @@ import {FaGithub, FaInstagram} from 'react-icons/fa'
 const Main = () => {
     return (
         <div id='main'>
-            <script data-goatcounter="https://bsumser.goatcounter.com/count"
-                async src="//gc.zgo.at/count.js"></script>
             <img className='w-full h-screen object-cover object-left' src={bg} alt="leaves" />
             <div className="w-full h-screen absolute top-0 left-0 bg-white/25">
             <div className="max-w-[700px] m-auto h-full w-full flex flex-col justify-center lg:items-start items-center">
