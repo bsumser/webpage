@@ -9,8 +9,6 @@ const Landing = () => {
 
   return (
     <div>
-    <script data-goatcounter="https://bsumser.goatcounter.com/count"
-      async src="//gc.zgo.at/count.js"></script>
       <Sidenav />
       <Main />
       <Work />
