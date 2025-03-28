@@ -120,4 +120,6 @@ const PhotoGallery = () => {
     );
 };
 
+/* test for digital ocean */
+
 export default PhotoGallery;
