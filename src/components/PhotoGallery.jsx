@@ -1,97 +1,123 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import Masonry from 'react-masonry-css';
+
+// --- Configuration for Masonry ---
+// Define how many columns to display at different screen widths
+const breakpointColumnsObj = {
+  default: 4, // Default number of columns (desktop)
+  1280: 3,    // 3 columns between 1100px and 1280px (example)
+  1024: 3,    // 3 columns between 700px and 1024px
+  768: 2,     // 2 columns between 500px and 768px
+  500: 1      // 1 column below 500px
+};
+
+// Helper function for captions (optional)
+function getCaptionFromPath(path) {
+    const filename = path.split('/').pop() || '';
+    const namePart = filename.split('.').slice(0, -1).join('.');
+    let caption = namePart.replace(/[-_]/g, ' ');
+    return caption.charAt(0).toUpperCase() + caption.slice(1);
+}
 
 const PhotoGallery = () => {
-  const [images, setImages] = useState([]);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [largeImage, setLargeImage] = useState(null);
+    const [imageUrls, setImageUrls] = useState([]); // Store just URLs or simple objects
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-  useEffect(() => {
-    // Define your image file names
-    const imageFiles = [
-      "DSCF1082.jpg",
-      "DSCF1149.jpg",
-      "DSCF1181.jpg",
-      "DSCF1219.jpg",
-      "DSCF1230.jpg",
-      "DSCF1231.jpg",
-      "DSCF1254.jpg",
-      "DSCF1276.jpg",
-      "DSCF1279.jpg",
-      "DSCF1368.jpg",
-      "DSCF1452.jpg",
-      "DSCF1572.jpg",
-      "DSCF1655.jpg",
-      "DSCF1656.jpg",
-      "DSCF1674.jpg",
-      "DSCF3440.jpg",
-      "DSCF3471.jpg",
-      "DSCF3479.jpg",
-      "DSCF3480.jpg",
-      "DSCF3487.jpg",
-      "DSCF3553.jpg",
-    ];
+    useEffect(() => {
+        const loadImages = async () => {
+            setIsLoading(true);
+            setError(null);
+            try {
+                // Use import.meta.glob to find images
+                const imageModules = import.meta.glob('../photos/*.{jpg,jpeg,png,webp,gif}'); // Adjust path if needed
+                const loadedUrls = [];
 
-    const imageArray = imageFiles.map((fileName) => ({
-      src: `/photos/${fileName}`, // Path relative to the public folder
-      thumbnail: `/photos/${fileName}`,
-      thumbnailWidth: 320,
-      thumbnailHeight: 200,
-      caption: fileName,
-    }));
+                for (const path in imageModules) {
+                    try {
+                        const module = await imageModules[path]();
+                        loadedUrls.push({
+                            url: module.default,
+                            caption: getCaptionFromPath(path) // Keep caption if desired
+                        });
+                    } catch (imgLoadErr) {
+                         console.error(`Failed to load module for ${path}:`, imgLoadErr);
+                         // Optionally skip this image or handle error
+                    }
+                }
+                setImageUrls(loadedUrls);
+            } catch (err) {
+                console.error("Error discovering images:", err);
+                setError("Failed to load gallery configuration.");
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        loadImages();
+    }, []);
 
-    setImages(imageArray);
-  }, []);
+    // --- Render Logic ---
+    if (isLoading) return <div className="text-center py-16 text-lg text-gray-600">Loading Gallery...</div>;
+    if (error) return <div className="text-center py-16 text-lg text-red-600">{error}</div>;
+    if (imageUrls.length === 0) return <div className="text-center py-16 text-lg text-gray-500">No images found.</div>;
 
-  const openModal = (imageSrc) => {
-    setLargeImage(imageSrc);
-    setModalIsOpen(true);
-  };
+    return (
+        // Container can be wide as needed
+        <div id="photo" className="max-w-screen-2xl mx-auto p-4 py-16 md:px-8">
+            <h1 className="text-4xl font-bold text-center text-[#001b5e] mb-10">
+                Photo Gallery
+            </h1>
 
-  const closeModal = () => {
-    setModalIsOpen(false);
-    setLargeImage(null);
-  };
+            {/* Add required CSS for react-masonry-css */}
+            {/* **BEST PRACTICE:** Move this CSS to your global index.css or a PhotoGallery.css file */}
+            <style>{`
+                .my-masonry-grid {
+                  display: -webkit-box; /* Not needed if autoprefixing */
+                  display: -ms-flexbox; /* Not needed if autoprefixing */
+                  display: flex;
+                  margin-left: -16px; /* Adjust based on your column gap -> gutter size */
+                  width: auto;
+                }
+                .my-masonry-grid_column {
+                  padding-left: 16px; /* Adjust based on your column gap -> gutter size */
+                  background-clip: padding-box;
+                }
 
-  return (
-    <div id="photo" className="w-full m-auto p-4 py-16">
-      <h1 className="text-4xl font-bold text-center text-[#001b5e]">Photo Gallery</h1>
+                /* Style your items */
+                .my-masonry-grid_column > div { /* Change 'div' to element type used below */
+                  margin-bottom: 16px; /* Adjust gap between items vertically */
+                  background: #eee; /* Optional background for items */
+                  overflow: hidden; /* Prevent content spill */
+                   border-radius: 4px; /* Optional rounding */
+                   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); /* Optional shadow */
+                }
+                 .my-masonry-grid_column img {
+                     display: block; /* Remove extra space below image */
+                     width: 100%; /* Make image fill its container */
+                     height: auto;
+                 }
+            `}</style>
 
-      {/* Masonry-like grid with responsive adjustments */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {images.map((image) => (
-          <div key={image.src} className="relative group">
-            <img
-              src={image.thumbnail}
-              alt={image.caption}
-              width={image.thumbnailWidth}
-              height={image.thumbnailHeight}
-              className="w-full h-auto object-cover cursor-pointer transition-all duration-300 ease-in-out transform group-hover:scale-105"
-              onClick={() => openModal(image.src)} // Click handler to open modal
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* Modal for displaying large images */}
-      {modalIsOpen && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
-          <div className="relative bg-white p-4 max-w-full">
-            <button
-              className="absolute top-2 right-2 text-white text-3xl"
-              onClick={closeModal}
+            <Masonry
+                breakpointCols={breakpointColumnsObj}
+                className="my-masonry-grid"        // Your custom CSS class for the grid container
+                columnClassName="my-masonry-grid_column" // Your custom CSS class for the columns
             >
-              &times;
-            </button>
-            <img
-              src={largeImage}
-              alt="Large"
-              className="max-w-full max-h-[80vh] object-contain"
-            />
-          </div>
+                {/* Array of JSX items */}
+                {imageUrls.map((imgData, index) => (
+                    <div key={index}> {/* Each child of Masonry is treated as an item */}
+                       <img
+                            src={imgData.url}
+                            alt={imgData.caption || `Gallery image ${index + 1}`}
+                            loading="lazy" // Add lazy loading
+                        />
+                       {/* Optional: Add caption overlay or below image */}
+                       {/* <p className="p-2 text-xs text-center">{imgData.caption}</p> */}
+                    </div>
+                ))}
+            </Masonry>
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default PhotoGallery;
