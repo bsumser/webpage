@@ -26,6 +26,10 @@
     "react-type-animation": "^3.2.0",
     "serve": "^14.2.4"
   },
+  "engines": {
+  "node": ">=18",
+  "npm": ">=9"
+    },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@types/react": "^18.3.18",
