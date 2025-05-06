@@ -14,7 +14,7 @@ const MTG = () => {
     e.preventDefault();
 
     // Fetch new deck data based on user input
-    fetch('https://api.bsumser.dev/deck?' + inputValue)
+    fetch(`https://api.bsumser.dev/deck?deck=${encodeURIComponent(inputValue)}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
