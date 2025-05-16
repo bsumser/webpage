@@ -5,19 +5,31 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 const Photo = () => {
   const [images, setImages] = useState([]);
 
-  // Function to dynamically import images from a directory
   useEffect(() => {
-    // Import all images in the 'photos' directory
     const importImages = async () => {
-      const imageFiles = import.meta.glob('../photos/*.jpg');  // Adjust the path as per your folder
+      // Import full-size images
+      const fullSizeImports = import.meta.glob('../photos/DSCF*.jpg');
+      // Import thumbnails
+      const thumbnailImports = import.meta.glob('../photos/thumb_*.jpg');
+
       const imageArray = [];
 
-      for (const path in imageFiles) {
-        const imageModule = await imageFiles[path]();
-        imageArray.push({
-          original: imageModule.default,   // The actual image URL after Vite processes the import
-          thumbnail: imageModule.default, // You can change this to another image if you have specific thumbnails
-        });
+      for (const fullPath in fullSizeImports) {
+        const fullName = fullPath.split('/').pop(); // e.g., DSCF1234.jpg
+        const thumbName = `thumb_${fullName}`;      // e.g., thumb_DSCF1234.jpg
+        const thumbPath = `../photos/${thumbName}`;
+
+        if (thumbnailImports[thumbPath]) {
+          const [fullModule, thumbModule] = await Promise.all([
+            fullSizeImports[fullPath](),
+            thumbnailImports[thumbPath](),
+          ]);
+
+          imageArray.push({
+            original: fullModule.default,
+            thumbnail: thumbModule.default,
+          });
+        }
       }
 
       setImages(imageArray);

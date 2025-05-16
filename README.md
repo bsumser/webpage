@@ -2,6 +2,7 @@
 
 - [Description](#description)
 - [Tech Stack](#techstack)
+- [Testing](#testing)
 - [SSL Cert](#sslcert)
 - [Credits](#credits)
 
@@ -10,6 +11,14 @@
 ## Tech Stack
 
 The frontend is made with React, and hosted on Digital Ocean's App Platform.
+
+## Testing
+
+End to end testing is performed with Cypress.
+
+```
+```
+npx cypress run --spec "cypress/e2e/test.cy.js"
 
 ## SSL Certification
 
