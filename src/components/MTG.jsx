@@ -14,7 +14,7 @@ const MTG = () => {
     e.preventDefault();
 
     // Fetch new deck data based on user input
-    fetch(`https://api.bsumser.dev/deck?deck=${encodeURIComponent(inputValue)}`)
+    fetch('https://api.bsumser.dev/deck?' + inputValue)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -30,7 +30,7 @@ const MTG = () => {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex-col items-center justify-center bg-gray-500">
       <form onSubmit={handleSubmit}>
         <label
           htmlFor="message"
@@ -55,11 +55,10 @@ const MTG = () => {
           Fetch Deck
         </button>
       </form>
-    <div className="flex items-center justify-center">
-      {/* Render DeckComponent if deck data is available */}
-      {deck.length > 0 && <DeckComponent deck={deck} />}
-    </div>
-
+      <div className="flex items-center justify-center">
+        {/* Render DeckComponent if deck data is available */}
+        {deck.length > 0 && <DeckComponent deck={deck} />}
+      </div>
     </div>
   );
 };
