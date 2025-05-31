@@ -2,17 +2,22 @@ name: Update App
 
 on:
   push:
-    branches: [master]
-  pull_request:
-    types: [closed]
-    branches: [master]
+    branches: [master] # Only trigger on push to master
+
+# Removed:
+# pull_request:
+#   types: [closed]
+#   branches: [master]
 
 permissions:
   contents: read
 
 jobs:
   deploy-app:
-    if: github.event.pull_request.merged == true || github.event_name == 'push'
+    # The 'if' condition can be simplified as well,
+    # since we only trigger on push to master now.
+    # We can remove the 'github.event.pull_request.merged == true' part.
+    if: github.event_name == 'push' # Only deploy on push events
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
