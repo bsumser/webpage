@@ -27,17 +27,22 @@ const MTG = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-        if (Array.isArray(data)) {
-          setDeck(data);   // Set the fetched deck array data
+        console.log("Received data from API:", data); // Log the full data for debugging
+
+        // --- CHANGE STARTS HERE ---
+        // Check if 'data' is an object and if it contains a 'deck' property that is an array
+        if (typeof data === 'object' && data !== null && Array.isArray(data.deck)) {
+          setDeck(data.deck); // Set the fetched deck array (from the 'deck' property)
         } else {
-          console.error(`Invalid deck data received ${data}`); // Log the actual data for debugging
+          // Log the actual data for better debugging if it's still not as expected
+          console.error(`Invalid deck data received:`, data); 
         }
+        // --- CHANGE ENDS HERE ---
       })
       .catch((err) => {
-        console.log(`Fetch error ${err.message}`); // More descriptive error log
+        console.error(`Fetch error: ${err.message}`); // Use console.error for actual errors
         // You might want to update some state here to show the error to the user
-      });
+    });
   };
 
   return (
