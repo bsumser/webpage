@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import DeckComponent from './DeckComponent'; // Import DeckComponent
 
 const MTG = () => {
-  const [deck, setDeck] = useState([]);  // Initialize deck as an empty array
+  const [deck, setDeck] = useState([]);   // Initialize deck as an empty array
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);  // Set the input string
+    setInputValue(event.target.value);   // Set the input string
   };
 
   const handleSubmit = (e) => {
@@ -14,18 +14,29 @@ const MTG = () => {
     e.preventDefault();
 
     // Fetch new deck data based on user input
-    fetch('https://api.bsumser.dev/deck?' + inputValue)
-      .then((response) => response.json())
+    // CORRECTED: Add 'deck=' to the query string and encodeURIComponent
+    fetch('https://api.bsumser.dev/deck?deck=' + encodeURIComponent(inputValue))
+      .then((response) => {
+        // Check if the response is OK (2xx status code)
+        if (!response.ok) {
+            // If not OK, read the error message from the response body
+            return response.json().then(errorData => {
+                throw new Error(errorData.error || 'Unknown API error');
+            });
+        }
+        return response.json();
+      })
       .then((data) => {
         console.log(data);
         if (Array.isArray(data)) {
-          setDeck(data);  // Set the fetched deck array data
+          setDeck(data);   // Set the fetched deck array data
         } else {
-          console.error("Invalid deck data received");
+          console.error(`Invalid deck data received ${data}`); // Log the actual data for debugging
         }
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(`Fetch error ${err.message}`); // More descriptive error log
+        // You might want to update some state here to show the error to the user
       });
   };
 
