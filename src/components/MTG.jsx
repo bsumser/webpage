@@ -2,47 +2,48 @@ import React, { useState } from 'react';
 import DeckComponent from './DeckComponent'; // Import DeckComponent
 
 const MTG = () => {
-  const [deck, setDeck] = useState([]);   // Initialize deck as an empty array
+  const [deckData, setDeckData] = useState([]); // Renamed for clarity: deckData holds the array
   const [inputValue, setInputValue] = useState('');
+  const [error, setError] = useState(null); // Added state for error handling
+  const [loading, setLoading] = useState(false); // Added state for loading indicator
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);   // Set the input string
+    setInputValue(event.target.value);
   };
 
   const handleSubmit = (e) => {
-    // Prevent the browser from reloading the page
     e.preventDefault();
+    setLoading(true); // Start loading
+    setError(null); // Clear previous errors
 
-    // Fetch new deck data based on user input
-    // CORRECTED: Add 'deck=' to the query string and encodeURIComponent
     fetch('https://api.bsumser.dev/deck?deck=' + encodeURIComponent(inputValue))
       .then((response) => {
-        // Check if the response is OK (2xx status code)
         if (!response.ok) {
-            // If not OK, read the error message from the response body
-            return response.json().then(errorData => {
-                throw new Error(errorData.error || 'Unknown API error');
-            });
+          return response.json().then(errorData => {
+            throw new Error(errorData.error || `API error: ${response.status}`);
+          });
         }
         return response.json();
       })
       .then((data) => {
-        console.log("Received data from API:", data); // Log the full data for debugging
+        console.log("Received data from API:", data);
 
-        // --- CHANGE STARTS HERE ---
-        // Check if 'data' is an object and if it contains a 'deck' property that is an array
         if (typeof data === 'object' && data !== null && Array.isArray(data.deck)) {
-          setDeck(data.deck); // Set the fetched deck array (from the 'deck' property)
+          setDeckData(data.deck); // Correct: Update the 'deckData' state with the array
         } else {
-          // Log the actual data for better debugging if it's still not as expected
-          console.error(`Invalid deck data received:`, data); 
+          console.error(`Invalid deck data received:`, data);
+          setError(new Error("Invalid deck data format from API.")); // Set a user-friendly error
+          setDeckData([]); // Clear any previous deck data on error
         }
-        // --- CHANGE ENDS HERE ---
       })
       .catch((err) => {
-        console.error(`Fetch error: ${err.message}`); // Use console.error for actual errors
-        // You might want to update some state here to show the error to the user
-    });
+        console.error(`Fetch error: ${err.message}`);
+        setError(err); // Store the error message
+        setDeckData([]); // Clear any previous deck data on error
+      })
+      .finally(() => {
+        setLoading(false); // Stop loading regardless of success or failure
+      });
   };
 
   return (
@@ -67,13 +68,17 @@ const MTG = () => {
         <button
           type="submit"
           className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+          disabled={loading} // Disable button while loading
         >
-          Fetch Deck
+          {loading ? 'Fetching...' : 'Fetch Deck'} {/* Show loading text */}
         </button>
       </form>
       <div className="flex items-center justify-center">
-        {/* Render DeckComponent if deck data is available */}
-        {deck.length > 0 && <DeckComponent deck={deck} />}
+        {/* Render error message if there's an error */}
+        {error && <p className="text-red-500 mt-4">Error: {error.message}</p>}
+
+        {/* Render DeckComponent if deckData is not empty and no error */}
+        {deckData.length > 0 && !error && <DeckComponent deck={deckData} />}
       </div>
     </div>
   );
