@@ -1,5 +1,6 @@
 import React from 'react';
 import ColorPie from './ColorPie'; // Import ColorPie component
+import ManaCurve from './ManaCurve'; // Import ManaCurve component
 
 const DeckComponent = ({ deck }) => (
   <div>
@@ -21,9 +22,19 @@ const DeckComponent = ({ deck }) => (
         </div>
       ))}
     </div>
+    {/* 2. Add a new section for charts */}
     <div className="mt-8">
-      <h3 className="text-lg font-semibold">Deck Color Distribution</h3>
-      {deck && <ColorPie width={300} height={300} deck={deck} />}
+        <h2 className="text-xl font-bold mb-4">Deck Analysis</h2>
+        <div className="flex flex-wrap gap-8 items-end">
+            <div>
+                <h3 className="text-lg font-semibold text-center">Color Distribution</h3>
+                {deck && <ColorPie width={300} height={300} deck={deck} />}
+            </div>
+            <div>
+                <h3 className="text-lg font-semibold text-center">Mana Curve</h3>
+                {deck && <ManaCurve width={450} height={300} deck={deck} />}
+            </div>
+        </div>
     </div>
   </div>
 );
