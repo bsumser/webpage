@@ -27,13 +27,26 @@ const ColorPie = ({ width, height, deck = [] }) => {
     const counts = { W: 0, U: 0, B: 0, R: 0, G: 0 };
 
     deck.forEach((card) => {
-      if (!card.color) return;
-      card.color.split(",").forEach((color) => {
-        const trimmed = color.trim();
-        if (counts.hasOwnProperty(trimmed)) {
-          counts[trimmed]++;
-        }
-      });
+      const numCopies = card.count || 1;
+
+      // Skip if the card has no colors property
+      if (!card.colors) return;
+
+      // --- THIS SECTION IS UPDATED ---
+      // Use regex to find all color characters (W, U, B, R, G) in the string.
+      // This handles formats like "{U}{R}" or "{W}".
+      const matchedColors = card.colors.match(/[WUBRG]/g);
+
+      // If we found any color characters, iterate over them
+      if (matchedColors) {
+        matchedColors.forEach((color) => {
+          if (counts.hasOwnProperty(color)) {
+            // Add the number of copies to the corresponding color's count
+            counts[color] += numCopies;
+          }
+        });
+      }
+      // --- END OF UPDATED SECTION ---
     });
 
     return Object.entries(counts)
@@ -41,6 +54,7 @@ const ColorPie = ({ width, height, deck = [] }) => {
       .filter((d) => d.value > 0);
   }, [deck]);
 
+  // D3 logic (remains the same)
   const pie = useMemo(() => {
     const pieGenerator = d3.pie().value((d) => d.value);
     return pieGenerator(colorCounts);
@@ -58,45 +72,38 @@ const ColorPie = ({ width, height, deck = [] }) => {
     );
   }, [radius, pie]);
 
+  // JSX rendering (remains the same)
   return (
     <div className="relative inline-block">
-      <svg
-        width={width}
-        height={height}
-        onMouseLeave={() => setTooltip(null)}
-      >
+      <svg width={width} height={height} onMouseLeave={() => setTooltip(null)}>
         <g transform={`translate(${width / 2}, ${height / 2})`}>
-          {arcs.map((arc, i) => (
-            <path
-              key={i}
-              d={arc}
-              fill={mtgColorMap[colorCounts[i].label] || "#888"}
-              stroke="#222"
-              strokeWidth={0.5}
-              onMouseMove={(e) => {
-                const label = colorCounts[i].label;
-                const value = colorCounts[i].value;
-                setTooltip({
-                  x: e.nativeEvent.offsetX,
-                  y: e.nativeEvent.offsetY,
-                  label: mtgColorNames[label],
-                  value,
-                });
-              }}
-              onMouseOut={() => setTooltip(null)}
-            />
-          ))}
+          {arcs.map((arc, i) => {
+            const colorData = colorCounts[i];
+            return (
+              <path
+                key={i}
+                d={arc}
+                fill={mtgColorMap[colorData.label] || "#CCCCCC"}
+                stroke="#1a1a1a"
+                strokeWidth={1}
+                onMouseMove={(e) => {
+                  setTooltip({
+                    x: e.nativeEvent.offsetX,
+                    y: e.nativeEvent.offsetY,
+                    label: mtgColorNames[colorData.label],
+                    value: colorData.value,
+                  });
+                }}
+                onMouseOut={() => setTooltip(null)}
+              />
+            );
+          })}
         </g>
       </svg>
-
       {tooltip && (
         <div
-          className="absolute z-10 bg-black text-white text-xs px-2 py-1 rounded pointer-events-none"
-          style={{
-            left: tooltip.x + 10,
-            top: tooltip.y + 10,
-            whiteSpace: "nowrap",
-          }}
+          className="absolute z-10 bg-gray-800 text-white text-xs px-2 py-1 rounded pointer-events-none"
+          style={{ left: tooltip.x + 15, top: tooltip.y + 15, whiteSpace: "nowrap" }}
         >
           {tooltip.label}: {tooltip.value}
         </div>
