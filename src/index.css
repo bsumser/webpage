@@ -5,3 +5,20 @@
 * {
     scroll-behavior: smooth;
 }
+
+/* Add the Masonry styles within a layer */
+@layer base { /* or @layer components */
+  .my-masonry-grid {
+    display: flex;
+    margin-left: -1rem; /* Gutters */
+    width: auto;
+  }
+  .my-masonry-grid_column {
+    padding-left: 1rem; /* Gutters */
+    background-clip: padding-box;
+  }
+   /* Optional item margin rule */
+  .my-masonry-grid_column > div {
+     margin-bottom: 1rem;
+  }
+}
