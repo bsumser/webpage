@@ -1,29 +1,23 @@
-name: Update App
+name: Safe Update App
 
 on:
   push:
-    branches: [master] # Only trigger on push to master
-
-# Removed:
-# pull_request:
-#   types: [closed]
-#   branches: [master]
-
-permissions:
-  contents: read
+    branches: [master]
 
 jobs:
-  deploy-app:
-    # The 'if' condition can be simplified as well,
-    # since we only trigger on push to master now.
-    # We can remove the 'github.event.pull_request.merged == true' part.
-    if: github.event_name == 'push' # Only deploy on push events
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
-      - name: Deploy the app
-        uses: digitalocean/app_action/deploy@v2
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-          print_build_logs: true
+
+      - name: Trigger Deploy (Code Only)
+        run: |
+          # This gets your App ID and just tells DO to rebuild/redeploy
+          APP_ID=$(doctl apps list --format ID --no-header | head -n 1)
+          doctl apps create-deployment $APP_ID
