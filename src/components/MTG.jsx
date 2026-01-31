@@ -16,7 +16,7 @@ const MTG = () => {
     setLoading(true); // Start loading
     setError(null); // Clear previous errors
 
-    fetch('https://api.bsumser.dev/deck?deck=' + encodeURIComponent(inputValue))
+    fetch('https://api.bsumser.dev/mtg/deck?deck=' + encodeURIComponent(inputValue))
       .then((response) => {
         if (!response.ok) {
           return response.json().then(errorData => {
