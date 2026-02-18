@@ -28,12 +28,12 @@ const MTG = () => {
       .then((data) => {
         console.log("Received data from API:", data);
 
-        if (typeof data === 'object' && data !== null && Array.isArray(data.deck)) {
-          setDeckData(data.deck); // Correct: Update the 'deckData' state with the array
+        if (Array.isArray(data)) {
+            setDeckData(data); // data IS the array
         } else {
-          console.error(`Invalid deck data received:`, data);
-          setError(new Error("Invalid deck data format from API.")); // Set a user-friendly error
-          setDeckData([]); // Clear any previous deck data on error
+            console.error(`Invalid deck data received:`, data);
+            setError(new Error("Invalid deck data format from API."));
+            setDeckData([]);
         }
       })
       .catch((err) => {
