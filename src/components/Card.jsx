@@ -1,27 +1,24 @@
 import React from 'react'
 
-const Card = ({card, i}) => {
-    // It now has access to the *entire* card object and can use any of its properties.
-  const imageUrl = (card.artUrls && card.artUrls.length > 0) ? card.artUrls[0] : null;
+const Card = ({ card, i }) => {
+  // Use the direct image_url string from your new JSON format
+  // We check if it's truthy (not null or empty string)
+  const imageUrl = card.image_url && card.image_url !== "" ? card.image_url : null;
 
   return (
     <div className="relative group p-2 rounded-md shadow-sm bg-gray-100 border border-gray-200">
       
-      {/* Accessing properties from the passed-in card object */}
       <div className="space-y-1">
+        {/* card.name matches your JSON */}
         <p className="font-bold">{card.count || 1}x {card.name}</p>
-        <p>Cost: {card.manacost ? card.manacost.replaceAll(/[{}]/g, '') : 'N/A'}</p>
-        <p>Type: {card.type}</p>
-        <p>
-          Color: {
-            (card.colors && Array.isArray(card.colors) && card.colors.length > 0)
-              ? card.colors.join(', ')
-              : 'Colorless'
-          }
+        
+        {/* Updated to mana_cost (snake_case) to match Go JSON tags */}
+        <p className="text-sm text-gray-600">
+          Cost: {card.mana_cost ? card.mana_cost.replaceAll(/[{}]/g, '') : 'N/A'}
         </p>
       </div>
 
-      {/* The tooltip also uses a property from the card object */}
+      {/* Tooltip Image */}
       {imageUrl && (
         <img
           src={imageUrl}
@@ -39,4 +36,4 @@ const Card = ({card, i}) => {
   );
 }
 
-export default Card
+export default Card;
