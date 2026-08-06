@@ -1,9 +1,8 @@
-import { useState } from 'react';
 import Landing from './components/Landing.tsx';
 import MTG from './components/MTG.tsx';
-import Now from './components/Now';
-import PhotoGallery from './components/PhotoGallery';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Now from './components/Now.tsx';
+import PhotoGallery from './components/PhotoGallery.tsx';
+import { BrowserRouter, Routes, Route } from "react-router";
 
 function App() {
   return (
