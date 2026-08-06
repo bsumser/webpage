@@ -3,6 +3,7 @@
 - [Description](#description)
 - [Tech Stack](#techstack)
 - [SSL Cert](#sslcert)
+- [Make Coammands](#make)
 - [Credits](#credits)
 
 ## Description
@@ -16,6 +17,19 @@ Golang
 Vite
 
 ## SSL Certification
+
+## Make Commands
+
+make help	Displays formatted list of all available commands
+make up	Starts all services in detached mode
+make build	Forces a rebuild of Docker images before running
+make down	Stops and removes running containers
+make logs	Streams combined real-time logs from all containers
+make status	Displays container status and healthchecks
+make test-up	Runs your isolated Frontend + Nginx test setup
+make shell-backend	Drops you into a shell inside the running Go container
+make shell-db	Opens an interactive psql shell in the database
+make clean-all	Stops everything, deletes database volumes, and removes built images (with prompt)
 
 ## Credits
 
