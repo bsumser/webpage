@@ -1,7 +1,17 @@
+import Sidenav from './Sidenav.tsx';
+import Main from './Main.tsx';
+import Work from './Work.tsx';
+import Projects from './Projects.tsx';
+import Photo from './Photo.tsx';
+
 export default function Landing() {
   return (
     <div>
-      <h1>Landing component</h1>
+      <Sidenav />
+      <Main />
+      <Work />
+      <Projects />
+      <Photo />
     </div>
   );
 }
