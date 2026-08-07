@@ -1,0 +1,13 @@
+# Git & OS files
+.git
+.gitignore
+.DS_Store
+
+# Local environments and test files
+*.env
+database.env
+tests/
+scripts/
+
+# Documentation / Markdown
+*.md
