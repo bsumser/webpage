@@ -10,7 +10,7 @@ GREEN = \033[0;32m
 RED   = \033[0;31m
 RESET = \033[0m
 
-.PHONY: help build up down restart logs status clean clean-volumes shell-backend shell-frontend test-up test-down
+.PHONY: help build up down restart logs logs-backend logs-frontend logs-db status clean clean-all shell-backend shell-frontend shell-db db-reset test-up test-down
 
 help: ## Show this help menu
 	@echo "$(CYAN)Available Makefile commands:$(RESET)"
@@ -43,6 +43,9 @@ logs-backend: ## Follow Go backend logs
 logs-frontend: ## Follow React/Nginx frontend logs
 	$(DC) logs -f frontend
 
+logs-db: ## Follow PostgreSQL database logs (useful during init.sql import)
+	$(DC) logs -f db
+
 status: ## List running containers and health status
 	$(DC) ps
 
@@ -55,7 +58,13 @@ shell-frontend: ## Open interactive shell inside Frontend container
 	$(DC) exec frontend sh
 
 shell-db: ## Connect directly to PostgreSQL via psql
-	$(DC) exec db psql -U portfolio_user -d portfolio
+	$(DC) exec db psql -U $${POSTGRES_USER:-portfolio_user} -d $${POSTGRES_DB:-portfolio}
+
+db-reset: ## Wipe persistent DB volume and re-run db/init.sql from scratch
+	@echo "$(RED)WARNING: Deleting database volume to re-trigger initialization script...$(RESET)"
+	$(DC) down -v
+	$(DC) up -d db
+	@echo "$(CYAN)Database container restarting. Run 'make logs-db' to watch the import progress.$(RESET)"
 
 ## -- Local Testing (Frontend + Nginx only) --
 
