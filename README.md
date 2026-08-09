@@ -11,10 +11,11 @@
 ## Tech Stack
 
 React
+Vite
 Typescript
 Tailwind
 Golang
-Vite
+nginx
 
 ## SSL Certification
 
@@ -31,9 +32,14 @@ make shell-backend	Drops you into a shell inside the running Go container
 make shell-db	Opens an interactive psql shell in the database
 make clean-all	Stops everything, deletes database volumes, and removes built images (with prompt)
 
+## Optimizations
+Postgres uses a module called pg_trgm to break your card names into these small chunks. When you perform a search using ILIKE or // %, the database doesn't have to scan all 650,000 rows one by one (a "Sequential Scan"). Instead, it looks up the trigrams in the index to find matching cards instantly.
+
 ## Credits
 
 Thanks to [morhetz](https://github.com/morhetz) for creating the gruvbox color scheme. I use it in almost all the programs on my pc.
 
 Credit to Niklas Luhmann for pioneering the Zettelkasten method for personal knowledge managment. This kind of system always intrigued me
 ever since I about the interconnected web of hypercards from Neal Stephenson's book Snow Crash.
+
+https://earthly.dev/blog/golang-chi/
