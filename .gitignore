@@ -11,6 +11,9 @@
 # images
 /public/img
 
+# database
+/db*
+
 # credentials
 .env
 
