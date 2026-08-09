@@ -53,3 +53,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+db/init.sql
+*.sql
