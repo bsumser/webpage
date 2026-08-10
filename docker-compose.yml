@@ -47,6 +47,12 @@ services:
         condition: service_healthy
     networks:
       - internal_network
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:8080/health || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
 
   frontend:
     build:
@@ -56,6 +62,12 @@ services:
     restart: unless-stopped
     networks:
       - internal_network
+    healthcheck:
+      test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:80/ || exit 0"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 15s  # Gives Nginx entrypoint scripts time to complete before failing health
 
   proxy:
     image: nginx:alpine
@@ -67,8 +79,10 @@ services:
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
-      - frontend
-      - backend
+      frontend:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
     networks:
       - internal_network
 
