@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
+import ImageGallery from 'react-image-gallery';
+import 'react-image-gallery/styles/image-gallery.css';
 
 interface GalleryImage {
-  src: string;
-  alt: string;
+  original: string;
+  thumbnail: string;
+  originalAlt: string;
+  thumbnailAlt: string;
 }
 
 export default function Photo() {
@@ -14,8 +18,10 @@ export default function Photo() {
       const photoFiles = import.meta.glob('../photos/*.{jpg,jpeg,png,webp}', { eager: true }) as Record<string, { default: string }>;
 
       const imageArray = Object.keys(photoFiles).map((path) => ({
-        src: photoFiles[path].default,
-        alt: path.split('/').pop() ?? 'gallery-image',
+        original: photoFiles[path].default,
+        thumbnail: photoFiles[path].default,
+        originalAlt: path.split('/').pop() ?? 'gallery-image',
+        thumbnailAlt: path.split('/').pop() ?? 'gallery-image',
       }));
 
       setImages(imageArray);
@@ -31,11 +37,13 @@ export default function Photo() {
     <div id="photo" className="max-w-[1040px] m-auto md:pl-20 p-4 py-16">
       <h1 className="text-4xl font-bold text-center text-[#001b5e] mb-8">Photo Portfolio</h1>
       {images.length > 0 ? (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {images.map((image, index) => (
-            <img key={`${image.alt}-${index}`} src={image.src} alt={image.alt} className="w-full h-auto rounded-lg shadow-md object-cover" loading="lazy" />
-          ))}
-        </div>
+        <ImageGallery
+          items={images}
+          lazyLoad={true}
+          showPlayButton={false}
+          showFullscreenButton={true}
+          useBrowserFullscreen={false}
+        />
       ) : (
         <p className="text-center">No photos found in directory.</p>
       )}
