@@ -15,9 +15,14 @@ Vite
 Typescript
 Tailwind
 Golang
+Chi
 nginx
 
 ## SSL Certification
+
+
+## Hosting
+I use the entire tech stack on a Digital Ocean VPS running Ubuntu linux.
 
 ## Make Commands
 
@@ -36,6 +41,8 @@ make clean-all	Stops everything, deletes database volumes, and removes built ima
 Postgres uses a module called pg_trgm to break your card names into these small chunks. When you perform a search using ILIKE or // %, the database doesn't have to scan all 650,000 rows one by one (a "Sequential Scan"). Instead, it looks up the trigrams in the index to find matching cards instantly.
 
 ## Credits
+
+Thanks to [boda.sh](https://boda.sh/blog/beginners-guide-to-secure-vps/) for their guide on securing a VPS.
 
 Thanks to [morhetz](https://github.com/morhetz) for creating the gruvbox color scheme. I use it in almost all the programs on my pc.
 
