@@ -1,0 +1,37 @@
+name: Deploy to DigitalOcean Droplet
+
+on:
+  push:
+    branches:
+      - master  # or 'main' depending on your default branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code onto the GitHub runner
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Copy repository files directly to the Droplet via SCP
+      - name: Copy files to Droplet
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.DROPLET_HOST }}
+          username: ${{ secrets.DROPLET_USER }}
+          key: ${{ secrets.DROPLET_SSH_KEY }}
+          source: "."
+          target: "~/webpage"
+
+      # Step 3: Run Docker Compose commands on the Droplet via SSH
+      - name: Build and Start Containers
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DROPLET_HOST }}
+          username: ${{ secrets.DROPLET_USER }}
+          key: ${{ secrets.DROPLET_SSH_KEY }}
+          script: |
+            cd ~/webpage
+            docker compose up -d --build --remove-orphans
+            docker image prune -f
