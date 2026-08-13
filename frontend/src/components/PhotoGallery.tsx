@@ -80,7 +80,6 @@ export default function PhotoGallery() {
               loading="lazy"
               className="block w-full h-auto object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
             />
-            <div className="px-3 py-2 text-sm font-medium text-gray-700">{imgData.caption}</div>
           </button>
         ))}
       </div>
