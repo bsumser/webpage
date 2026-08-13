@@ -26,7 +26,7 @@ export default function MTG() {
     setLoading(true);
     setError(null);
 
-    fetch(`https://api.bsumser.dev/mtg/deck?deck=${encodeURIComponent(inputValue)}`)
+    fetch(`/api/mtg/deck?deck=${encodeURIComponent(inputValue)}`)
       .then((response) => {
         if (!response.ok) {
           return response.json().then((errorData: { error?: string }) => {
