@@ -16,13 +16,25 @@ export default function Photo() {
   useEffect(() => {
     const importImages = async () => {
       const photoFiles = import.meta.glob('../photos/*.{jpg,jpeg,png,webp}', { eager: true }) as Record<string, { default: string }>;
+      const thumbFiles = import.meta.glob('../thumbnails/*.{jpg,jpeg,png,webp}', { eager: true }) as Record<string, { default: string }>;
 
-      const imageArray = Object.keys(photoFiles).map((path) => ({
-        original: photoFiles[path].default,
-        thumbnail: photoFiles[path].default,
-        originalAlt: path.split('/').pop() ?? 'gallery-image',
-        thumbnailAlt: path.split('/').pop() ?? 'gallery-image',
-      }));
+      // Build a lookup of filename -> thumbnail src
+      const thumbByName = new Map<string, string>();
+      for (const path of Object.keys(thumbFiles)) {
+        const name = path.split('/').pop() ?? '';
+        thumbByName.set(name, thumbFiles[path].default);
+      }
+
+      const imageArray = Object.keys(photoFiles).map((path) => {
+        const name = path.split('/').pop() ?? 'gallery-image';
+        return {
+          original: photoFiles[path].default,
+          // fall back to the full image if no matching thumbnail is found
+          thumbnail: thumbByName.get(name) ?? photoFiles[path].default,
+          originalAlt: name,
+          thumbnailAlt: name,
+        };
+      });
 
       setImages(imageArray);
       setLoading(false);
