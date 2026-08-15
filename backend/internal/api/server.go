@@ -2,7 +2,8 @@ package api
 
 import (
 	"backend/internal/database" // Import your database package
-	"net/http"                  // Added for JSON encoding if needed
+	"encoding/json"
+	"net/http" // Added for JSON encoding if needed
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -12,6 +13,14 @@ import (
 type Server struct {
 	Router *chi.Mux
 	DB     *database.DB // FIX: Add the DB field here
+}
+
+type KeyRequest struct {
+	Key string `json:"key"`
+}
+
+type KeyResponse struct {
+	Key string `json:"key"`
 }
 
 // FIX: Pass the DB connection into the server constructor
@@ -52,6 +61,11 @@ func (s *Server) MountHandlers() {
 			r.Get("/", s.handleGetItemByID)
 		})
 	})
+
+	s.Router.Route("/crossword", func(r chi.Router) {
+		r.Post("/key", s.handlePostCrossword)
+	})
+
 }
 
 func (s *Server) handleGetDeck(w http.ResponseWriter, r *http.Request) {
@@ -86,4 +100,24 @@ func (s *Server) handleGetCard(w http.ResponseWriter, r *http.Request) {
 func (s *Server) handleGetItemByID(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 	w.Write([]byte("Item ID: " + id))
+}
+
+func (s *Server) handlePostCrossword(w http.ResponseWriter, r *http.Request) {
+	// 1. Set JSON header BEFORE writing any headers/status
+	w.Header().Set("Content-Type", "application/json")
+
+	var req KeyRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil || req.Key == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]string{
+			"error": "Invalid request body or missing key parameter",
+		})
+		return
+	}
+
+	// 2. Encode structured JSON response
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(KeyResponse{
+		Key: req.Key,
+	})
 }

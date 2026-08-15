@@ -1,3 +1,4 @@
+import Crossword from './components/Crossword.tsx';
 import Landing from './components/Landing.tsx';
 import MTG from './components/MTG.tsx';
 import Now from './components/Now.tsx';
@@ -12,6 +13,7 @@ function App() {
         <Route path="/mtg" element={<MTG />} />
         <Route path="/photo" element={<PhotoGallery />} />
         <Route path="/now" element={<Now />} />
+        <Route path="/crossword" element={<Crossword />} />
       </Routes>
     </BrowserRouter>
   );
