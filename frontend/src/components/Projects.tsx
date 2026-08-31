@@ -1,8 +1,8 @@
 import ProjectItem from './ProjectItem.tsx';
-import quackImage from '../assets/duck.png';
-import aocImage from '../assets/aoc.png';
-import proj3img from '../assets/property.png';
-import proj4img from '../assets/web.png';
+import quackImage from '../assets/duck.webp';
+import aocImage from '../assets/aoc.webp';
+import proj3img from '../assets/property.webp';
+import proj4img from '../assets/web.webp';
 
 export default function Projects() {
   return (
