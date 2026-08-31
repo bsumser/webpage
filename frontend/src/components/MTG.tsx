@@ -1,5 +1,6 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 import DeckComponent from './DeckComponent.tsx';
+import SEO from './SEO.tsx';
 
 interface DeckCard {
   id?: string | number;
@@ -54,28 +55,35 @@ export default function MTG() {
   };
 
   return (
-    <div className="flex-col items-center justify-center bg-gray-500">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-          MTG Deck
-        </label>
-        <textarea
-          value={inputValue}
-          onChange={handleInputChange}
-          id="message"
-          rows={30}
-          cols={100}
-          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Enter deck query here..."
-        />
-        <hr />
-        <button type="submit" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" disabled={loading}>
-          {loading ? 'Fetching...' : 'Fetch Deck'}
-        </button>
-      </form>
-      <div className="flex items-center justify-center">
-        {error && <p className="text-red-500 mt-4">Error: {error.message}</p>}
-        {deckData.length > 0 && !error && <DeckComponent deck={deckData} />}
+    <div>
+      <SEO 
+          title="MTG Deck API" 
+          description="Fetch and display Magic: The Gathering deck data using Golang/Postgres MTG Deck API." 
+          canonical="https://tsumser.jp/mtg"
+      />
+      <div className="flex-col items-center justify-center bg-gray-500">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            MTG Deck
+          </label>
+          <textarea
+            value={inputValue}
+            onChange={handleInputChange}
+            id="message"
+            rows={30}
+            cols={100}
+            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Enter deck query here..."
+          />
+          <hr />
+          <button type="submit" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" disabled={loading}>
+            {loading ? 'Fetching...' : 'Fetch Deck'}
+          </button>
+        </form>
+        <div className="flex items-center justify-center">
+          {error && <p className="text-red-500 mt-4">Error: {error.message}</p>}
+          {deckData.length > 0 && !error && <DeckComponent deck={deckData} />}
+        </div>
       </div>
     </div>
   );
