@@ -1,4 +1,4 @@
-import { MTG, ManaCurve, Card, ColorPie, DeckComponent } from '@/components/mtg';
+import { MTG } from '@/components/mtg';
 
 export default function Page() {
   return (

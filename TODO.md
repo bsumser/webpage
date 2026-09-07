@@ -2,16 +2,7 @@
 Project Description
 
 ### Pending
-- [ ] Finish frontend component skeletons
-  - [ ] Landing.tsx
-  - [ ] Main.tsx
-  - [ ] Sidenav.tsx
-  - [ ] Projects.tsx
-  - [ ] Work.tsx
-  - [ ] MTG.tsx
-  - [ ] Now.tsx
-  - [ ] Photo.tsx
-  - [ ] PhotoGallery.tsx
+- [ ] Fix frontend health check
 - [ ] Finish shared layout and page structure
   - [ ] Header and navigation shell
   - [ ] Footer shell
@@ -31,4 +22,14 @@ Project Description
   - [ ] Cross-browser sanity pass
 
 ### Completed ✓
+- [x] Finish frontend component skeletons
+  - [x] Landing.tsx
+  - [x] Main.tsx
+  - [x] Sidenav.tsx
+  - [x] Projects.tsx
+  - [x] Work.tsx
+  - [x] MTG.tsx
+  - [x] Now.tsx
+  - [x] Photo.tsx
+  - [x] PhotoGallery.tsx
 - [x] Initial TODO scaffold

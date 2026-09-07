@@ -1,8 +1,16 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
+
+# Copy package manifests
 COPY package.json package-lock.json ./
-RUN npm ci
+
+# Fallback to regular npm install if npm ci fails
+RUN npm ci || npm install
+
+# Copy application source
 COPY . .
+
+# Build static output
 RUN npm run build
 
 FROM nginx:alpine AS runner
