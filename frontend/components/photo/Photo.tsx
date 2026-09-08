@@ -17,8 +17,8 @@ export default function Photo() {
 
   useEffect(() => {
     const importImages = async () => {
-      const photoFiles = import.meta.glob('../photos/*.{jpg,jpeg,png,webp}', { eager: true }) as Record<string, { default: string }>;
-      const thumbFiles = import.meta.glob('../thumbnails/*.{jpg,jpeg,png,webp}', { eager: true }) as Record<string, { default: string }>;
+      const photoFiles = import.meta.glob('/photos/*.{jpg,jpeg,png,webp}', { eager: true }) as Record<string, { default: string }>;
+      const thumbFiles = import.meta.glob('/thumbnails/*.{jpg,jpeg,png,webp}', { eager: true }) as Record<string, { default: string }>;
 
       // Build a lookup of filename -> thumbnail src
       const thumbByName = new Map<string, string>();
