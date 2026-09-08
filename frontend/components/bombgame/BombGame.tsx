@@ -197,9 +197,9 @@ export default function BombGame() {
   const [activePlayerIndex, setActivePlayerIndex] = useState(0);
   const [deck, setDeck] = useState<Card[]>(DEFAULT_DECK);
   const [currentCard, setCurrentCard] = useState<Card | null>(null);
+  const [showEnglish, setShowEnglish] = useState(false);
   const [timeLeft, setTimeLeft] = useState(12);
   const [maxTurnTime, setMaxTurnTime] = useState(12);
-  const [showAnswer, setShowAnswer] = useState(false);
 
   const activePlayer = players[activePlayerIndex];
 
@@ -216,6 +216,7 @@ export default function BombGame() {
   };
 
   const drawNextCard = useCallback(() => {
+    setShowEnglish(false);
     setDeck((prevDeck) => {
       let pool = prevDeck.length > 0 ? [...prevDeck] : [...DEFAULT_DECK];
       const randomIndex = Math.floor(Math.random() * pool.length);
@@ -242,7 +243,6 @@ export default function BombGame() {
 
     setPlayers(initializedPlayers);
     setActivePlayerIndex(0);
-    setShowAnswer(false);
     drawNextCard();
     resetTimer();
     setPhase('PLAYING');
@@ -251,7 +251,6 @@ export default function BombGame() {
   const handleCorrect = useCallback(() => {
     if (phase !== 'PLAYING') return;
     sounds.playCorrect();
-    setShowAnswer(false);
 
     let nextIndex = (activePlayerIndex + 1) % players.length;
     while (players[nextIndex].lives <= 0) {
@@ -290,7 +289,6 @@ export default function BombGame() {
       nextIndex = (nextIndex + 1) % players.length;
     }
     setActivePlayerIndex(nextIndex);
-    setShowAnswer(false);
     drawNextCard();
     resetTimer();
     setPhase('PLAYING');
@@ -326,7 +324,7 @@ export default function BombGame() {
         } else if (e.code === 'ArrowLeft' || e.code === 'KeyJ') {
           handleWrong();
         } else if (e.code === 'Space') {
-          setShowAnswer((prev) => !prev);
+          setShowEnglish((prev) => !prev);
         }
       } else if ((phase === 'EXPLODED' || phase === 'GAME_OVER') && e.code === 'Space') {
         const alivePlayers = players.filter((p) => p.lives > 0);
@@ -342,9 +340,16 @@ export default function BombGame() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [phase, handleCorrect, handleWrong, players]);
 
-  // Calculate pointer rotation angle (in degrees) toward active player
+  // Calculate coordinates and exact rotation angle pointing toward active player
   const totalPlayers = players.length;
-  const activeAngleDegree = totalPlayers > 0 ? (activePlayerIndex / totalPlayers) * 360 - 90 : -90;
+  const radius = 190;
+  
+  const activeRadAngle = totalPlayers > 0 ? (activePlayerIndex / totalPlayers) * (2 * Math.PI) - Math.PI / 2 : -Math.PI / 2;
+  const activeX = Math.cos(activeRadAngle) * radius;
+  const activeY = Math.sin(activeRadAngle) * radius;
+  
+  // atan2 returns angle in radians relative to positive X-axis; rotate line (pointing down by default) toward player
+  const activeAngleDegree = (Math.atan2(activeY, activeX) * 180) / Math.PI - 90;
   const stressRatio = 1 - timeLeft / maxTurnTime;
 
   return (
@@ -462,17 +467,27 @@ export default function BombGame() {
         ) : (
           /* ARENA SCREEN: RADIAL CIRCLE & CENTRAL BOMB */
           <div className="relative w-[500px] h-[500px] flex items-center justify-center">
-            {/* Center Area: Prompt, Bomb, Spark, and Rotating Pointer Arrow */}
+            {/* Center Area: Prompt & Bomb */}
             <div className="absolute z-10 flex flex-col items-center justify-center pointer-events-none">
-              {/* Turn Text & Flashcard Word Prompt */}
+              {/* Turn Text & Kana/Kanji Prompt */}
               {phase === 'PLAYING' && currentCard && (
-                <div className="mb-2 text-center">
+                <div className="mb-2 text-center min-h-[80px] flex flex-col items-center justify-center">
                   <p className="text-xs text-neutral-300 font-medium">
-                    <span className="font-bold text-amber-300">{activePlayer?.name}</span>, recall word for:
+                    <span className="font-bold text-amber-300">{activePlayer?.name}</span>'s turn:
                   </p>
-                  <div className="text-2xl font-black tracking-wider text-white mt-0.5">
+                  <div className="text-3xl font-black tracking-wider text-white mt-0.5">
                     {currentCard.reading}
                   </div>
+                  {currentCard.kanji !== currentCard.reading && (
+                    <div className="text-lg font-bold text-amber-300/90 mt-0.5">
+                      ({currentCard.kanji})
+                    </div>
+                  )}
+                  {showEnglish && (
+                    <div className="text-sm font-semibold text-neutral-300 mt-1 italic animate-fade-in">
+                      "{currentCard.english}"
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -482,7 +497,7 @@ export default function BombGame() {
                 {phase === 'PLAYING' && (
                   <div
                     className="absolute w-full h-full flex items-center justify-center transition-transform duration-500 ease-out"
-                    style={{ transform: `rotate(${activeAngleDegree + 90}deg)` }}
+                    style={{ transform: `rotate(${activeAngleDegree}deg)` }}
                   >
                     <svg className="w-40 h-40" viewBox="0 0 100 100">
                       <defs>
@@ -545,28 +560,11 @@ export default function BombGame() {
                   )}
                 </div>
               </div>
-
-              {/* Revealed Card Answer / Kanji Translation */}
-              {phase === 'PLAYING' && currentCard && (
-                <div className="mt-2 text-center min-h-[48px]">
-                  {showAnswer ? (
-                    <div className="bg-neutral-900/90 px-4 py-1.5 rounded-lg border border-neutral-700 text-center shadow-lg">
-                      <div className="text-xl font-bold text-emerald-400">{currentCard.kanji}</div>
-                      <div className="text-xs text-neutral-300">{currentCard.english}</div>
-                    </div>
-                  ) : (
-                    <span className="text-[11px] text-neutral-400 bg-neutral-900/50 px-2 py-0.5 rounded">
-                      [SPACE] Reveal Kanji
-                    </span>
-                  )}
-                </div>
-              )}
             </div>
 
             {/* Circular Ring of Players */}
             {players.map((player, idx) => {
               const angle = (idx / totalPlayers) * (2 * Math.PI) - Math.PI / 2;
-              const radius = 190; // Circle radius in pixels
               const x = Math.cos(angle) * radius;
               const y = Math.sin(angle) * radius;
 
@@ -650,19 +648,19 @@ export default function BombGame() {
         )}
       </div>
 
-      {/* Teacher Control Keybindings Footer */}
+      {/* Control Keybindings Footer */}
       <footer className="w-full max-w-2xl bg-neutral-900/60 p-2.5 rounded-lg border border-neutral-700/50 flex justify-around text-xs text-neutral-400 font-mono">
         <div>
+          <kbd className="bg-neutral-800 px-1.5 py-0.5 rounded text-neutral-200 border border-neutral-700">Space</kbd>{' '}
+          Toggle English
+        </div>
+        <div>
           <kbd className="bg-neutral-800 px-1.5 py-0.5 rounded text-neutral-200 border border-neutral-700">→ / K</kbd>{' '}
-          Correct
+          Pass Bomb (Correct)
         </div>
         <div>
           <kbd className="bg-neutral-800 px-1.5 py-0.5 rounded text-neutral-200 border border-neutral-700">← / J</kbd>{' '}
           Wrong (-2s)
-        </div>
-        <div>
-          <kbd className="bg-neutral-800 px-1.5 py-0.5 rounded text-neutral-200 border border-neutral-700">Space</kbd>{' '}
-          Reveal / Next
         </div>
       </footer>
     </main>
